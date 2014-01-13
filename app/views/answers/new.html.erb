@@ -1,0 +1,19 @@
+<h2>Share new opinion</h2>
+
+<%= @answers.pluck(:word) %>
+
+<%= form_for :post, url: answers_path do |f| %>
+  <p>
+    <%= f.label :Adjectives %><br>
+    <%= f.text_field :Adjectives %>
+  </p>
+ 
+  <p>
+    <%= f.label :"Level of Acquentance" %>
+    <%= f.select :LOA, options_for_select(%w[Low Medium High]) %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

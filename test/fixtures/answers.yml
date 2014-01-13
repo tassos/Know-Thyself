@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Occur: 
+  LOA_Low: 
+  LOA_Med: 
+  LOA_High: 
+
+two:
+  Occur: 
+  LOA_Low: 
+  LOA_Med: 
+  LOA_High: 

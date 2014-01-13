@@ -1,0 +1,20 @@
+<table>
+	<tr>
+		<th>Word</th>
+		<th>Occurs</th>
+		<th>LOA High</th>
+		<th>LOA Mid</th>
+		<th>LOA Low</th>
+	</tr>
+	<% @answers.each do |answer| %>
+	<tr>
+		<td><%= answer.Word %></td>
+		<td><%= answer.Occur %></td>
+		<td><%= answer.LOA_High %></td>
+		<td><%= answer.LOA_Med %></td>
+		<td><%= answer.LOA_Low %></td>
+	</tr>
+	<% end %>
+</table>
+
+Create new <%= link_to "answer", new_answer_path%>
