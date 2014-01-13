@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   def new
-    @answers = Answer.all
+    @answers = Answer.pluck(:word)
   end
   def index
     @answers = Answer.all

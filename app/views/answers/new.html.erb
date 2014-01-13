@@ -1,6 +1,17 @@
 <h2>Share new opinion</h2>
 
-<%= @answers.pluck(:word) %>
+<table><tr>
+<% i=0%>
+<% @answers.each do |word| %>
+	<%if i==7 %>
+		<% i=0 %>
+		<td><%=word%></td></tr><tr>
+	<% else %>
+		<td><%= word%></td>
+		<% i=i+1 %>
+	<%end%>
+<%end%>
+</tr></table>
 
 <%= form_for :post, url: answers_path do |f| %>
   <p>
