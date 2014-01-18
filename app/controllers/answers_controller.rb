@@ -8,7 +8,7 @@ class AnswersController < ApplicationController
   def show
   end
   def create
-    params[:answer][:Adjectives].each do |set|
+    params[:answer][:Adjectives].uniq.each do |set|
       set.split(",").each do |word|
         case params[:answer][:LOA]
           when "High"
@@ -21,6 +21,6 @@ class AnswersController < ApplicationController
         Answer.find_or_create_by_Word(word.strip).increment!(:Occur)
       end
     end
-    render text: params[:answer]
+    redirect_to answers_path
   end
 end
