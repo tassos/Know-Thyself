@@ -26,7 +26,7 @@
     </p>
     <p>
       <%= f.label :"You know me" %>
-        <%= f.select :LOA, options_for_select([['a little bit', 3], ['somehow', 2], ['very good!', 1]]) %>
+      <%= f.select :LOA, options_for_select([[nil, nil], ['a little bit', 3], ['somehow', 2], ['very good', 1]]),{default: nil} %>
     </p>
     <p>
       <%= f.submit "Submit opinion", class: "btn btn-success"%>
