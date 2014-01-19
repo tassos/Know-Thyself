@@ -17,11 +17,11 @@ class AnswersController < ApplicationController
         
     filtered.uniq.each do |word| 
       case params[:answer][:LOA]
-        when "High"
+        when "1"
           Answer.find_or_create_by_Word(word.strip).increment!(:LOA_High)
-        when "Medium"
+        when "2"
           Answer.find_or_create_by_Word(word.strip).increment!(:LOA_Med)
-        when "Low"
+        when "3"
           Answer.find_or_create_by_Word(word.strip).increment!(:LOA_Low)
       end
       Answer.find_or_create_by_Word(word.strip).increment!(:Occur)

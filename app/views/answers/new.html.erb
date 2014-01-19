@@ -1,33 +1,35 @@
 <div class="container">
   <h2>Share new opinion</h2>
+  
   <%= form_for :answer, url: answers_path, html: {class: "form-group"} do |f| %>
-  <p>Select from pre-defined adjectives that you believe the describe me...</p>
-  <% i=0%>
-  <table><tr>
-  	<% @answers.each do |word| %>
-  	<% i=i+1%>
-  	<td>
-  		<%= check_box_tag "answer[Adjectives][]", word%>
-      <%= f.label word%>
-    </td>
-    <% if i==7 %>
-        </tr><tr>
-          <%i=0%>
-      <%end%>
-  	<%end%>
-	</tr></table>
+    <p>Select from pre-defined adjectives that you believe the describe me...</p>
+    
+    <div class="table-responsive">
+      <% i=0%>
+      <table class="table"><tr>
+      	<% @answers.each do |word| %>
+        	<% i=i+1%>
+        	<td>
+        		<%= check_box_tag "answer[Adjectives][]", word%>
+        		<%= label_tag word%>
+          </td>
+          <% if i==5 %>
+            </tr><tr>
+            <%i=0%>
+          <%end%>
+      	<%end%>
+    	</tr></table>
+    </div>
   
     <p>
       <%= text_field_tag "answer[Adjectives][]", nil, placeholder: "...and even add your own, separated by comma!", size: 55%>
     </p>
-   
     <p>
-      <%= f.label :"Please specify how well you know me" %>
-        <%= f.select :LOA, options_for_select(%w[Low Medium High]) %>
+      <%= f.label :"You know me" %>
+        <%= f.select :LOA, options_for_select([['a little bit', 3], ['somehow', 2], ['very good!', 1]]) %>
     </p>
-   
     <p>
-      <%= f.submit "Submit opinion"%>
+      <%= f.submit "Submit opinion", class: "btn btn-success"%>
     </p>
   <% end %>
 </div>
