@@ -1,6 +1,5 @@
 <div class="container">
   <h2>Share new opinion</h2>
-      
   
   <% flash.each do |key, value| %>
     <div class="flash <%= key %> alert alert-danger alert-dismissable">
@@ -11,23 +10,21 @@
   <%= form_for :answer, url: answers_path, html: {class: "form-group", id: "new_answer"} do |f| %>
     <p>Select any adjectives that you believe describe me...</p>
     
-    <div class="table-responsive">
+    <div class="btn-group" data-toggle="buttons">
       <% i=0%>
-      <table class="table"><tr>
       	<% @answers.each do |word| %>
         	<% i=i+1%>
-        	<td>
-        		<%= check_box_tag "answer[Adjectives][]", word%>
-        		<%= label_tag word%>
-          </td>
+        	  <label class="btn btn-primary">
+        		  <%= check_box_tag "answer[Adjectives][]", word%>
+        		  <%= word %>
+      		  </label>
           <% if i==5 %>
-            </tr><tr>
+          </div><br/><div class="btn-group" data-toggle="buttons">
             <%i=0%>
           <%end%>
       	<%end%>
-    	</tr></table>
     </div>
-  
+    
     <p>
       <%= text_field_tag "answer[Adjectives][]", nil, placeholder: "...and even add your own! (separated by comma)", size: 55%>
     </p>
