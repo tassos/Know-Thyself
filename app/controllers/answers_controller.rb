@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   def new
-    @answers = Answer.pluck(:word).sample(40).sort
+    @answers = Answer.pluck(:word).sort
   end
   def index
     @answers = Answer.all.order(:word)
