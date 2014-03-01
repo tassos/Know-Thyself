@@ -1,13 +1,6 @@
 <div class="container">
   <h2>Share new opinion</h2>
       
-  
-  <% flash.each do |key, value| %>
-    <div class="flash <%= key %> alert alert-danger alert-dismissable">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= value %>
-    </div>
-  <% end %>
   <%= form_for :answer, url: answers_path, html: {class: "form-group", id: "new_answer"} do |f| %>
     <p>Select any adjectives that you believe describe me...</p>
     
@@ -19,7 +12,7 @@
         		  <%= check_box_tag "answer[Adjectives][]", word%>
         		  <%= word %>
       		  </label>
-          <% if i==5 %>
+          <% if i==8 %>
           </div><br/><div class="btn-group" data-toggle="buttons">
             <%i=0%>
           <%end%>
@@ -34,7 +27,8 @@
       <%= f.select :LOA, options_for_select([[nil, nil], ['a little bit', 3], ['somehow', 2], ['very good', 1]]),{default: nil} %>
     </p>
     <p>
-      <button class="btn btn-primary", data-toggle="modal" data-target="#myModal">Review Answer</button>
+      <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Review Answer</button>
+      <%= f.submit "Submit!", class: "btn btn-success" %>
     </p>
 
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

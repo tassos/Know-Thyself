@@ -11,10 +11,16 @@ class AnswersController < ApplicationController
     filtered=[]
     if params[:answer][:Adjectives].join.empty?
       flash[:notice]="Please fill in some Adjectives that describe me!"
-      redirect_to new_answer_path
+      respond_to do |format|
+        format.html { redirect_to new_answer_path }
+        format.js {render :action => 'failure'}
+      end
     elsif params[:answer][:LOA].empty?
       flash[:notice]="Please fill in the Level of our Acquaintance :)"
-      redirect_to new_answer_path
+      respond_to do |format|
+        format.html { redirect_to new_answer_path }
+        format.js {render :action => 'failure'}
+      end
     else
       params[:answer][:Adjectives].each do |words|
         words.split( /, */ ).uniq.each do |word|
