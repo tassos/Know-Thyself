@@ -10,8 +10,10 @@ class AnswersController < ApplicationController
   def create
     filtered=[]
     if params[:answer][:Adjectives].join.empty?
+      flash[:notice]="Please fill in some Adjectives that describe me!"
       redirect_to new_answer_path
     elsif params[:answer][:LOA].empty?
+      flash[:notice]="Please fill in the Level of our Acquaintance :)"
       redirect_to new_answer_path
     else
       params[:answer][:Adjectives].each do |words|
