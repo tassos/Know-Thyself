@@ -27,6 +27,7 @@ class AnswersController < ApplicationController
           when "1" then Answer.find_or_create_by_Word(word.strip).increment!(:LOA_High)
           when "2" then Answer.find_or_create_by_Word(word.strip).increment!(:LOA_Med)
           when "3" then Answer.find_or_create_by_Word(word.strip).increment!(:LOA_Low)
+          else raise 'Not supported value "#{params[:answer][:LOA]" for LOA(!?)'
         end
         Answer.find_or_create_by_Word(word.strip).increment!(:Occur)
       end
