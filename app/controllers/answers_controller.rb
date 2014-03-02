@@ -37,7 +37,11 @@ class AnswersController < ApplicationController
         end
         Answer.find_or_create_by_Word(word.strip).increment!(:Occur)
       end
-      redirect_to answers_path
+      flash[:notice]="Response submitted successfully!"
+      respond_to do |format|
+        format.html {redirect_to answers_path}
+        format.js {render :action => 'success'}
+      end
     end
   end
 end

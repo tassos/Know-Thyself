@@ -10,7 +10,7 @@
         	<% i=i+1%>
         	  <label class="btn btn-info">
         		  <%= check_box_tag "answer[Adjectives][]", word%>
-        		  <%= word %>
+        		  <%= word.capitalize %>
       		  </label>
           <% if i==8 %>
           </div><br/><div class="btn-group" data-toggle="buttons">
@@ -43,7 +43,6 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Go back</button>
-            <%= f.submit "Submit!", class: "btn btn-success" %> 
           </div>
         </div>
       </div>
