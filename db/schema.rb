@@ -13,14 +13,17 @@
 
 ActiveRecord::Schema.define(version: 20140111215512) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "answers", force: true do |t|
-    t.integer  "Occur"
-    t.integer  "LOA_Low"
-    t.integer  "LOA_Med"
-    t.integer  "LOA_High"
+    t.integer  "occur"
+    t.integer  "loa_low"
+    t.integer  "loa_med"
+    t.integer  "loa_high"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "Word"
+    t.string   "word"
   end
 
 end

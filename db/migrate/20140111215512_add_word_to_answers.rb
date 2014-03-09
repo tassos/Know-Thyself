@@ -1,5 +1,5 @@
 class AddWordToAnswers < ActiveRecord::Migration
   def change
-    add_column :answers, :Word, :string
+    add_column :answers, :word, :string
   end
 end
