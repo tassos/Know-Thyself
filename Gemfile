@@ -10,6 +10,12 @@ gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
+# Use twitter bootstrap css and js
+gem 'twitter-bootstrap-rails'
+
+# Using rails_12factor gem because heroku says so
+gem 'rails_12factor'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
