@@ -30,12 +30,12 @@ class AnswersController < ApplicationController
   
       filtered.uniq.each do |word|
         case params[:answer][:LOA]
-          when "1" then Answer.find_or_create_by_Word(word.strip).increment!(:LOA_High)
-          when "2" then Answer.find_or_create_by_Word(word.strip).increment!(:LOA_Med)
-          when "3" then Answer.find_or_create_by_Word(word.strip).increment!(:LOA_Low)
+          when "1" then Answer.find_or_create_by_word(word.strip).increment!(:loa_high)
+          when "2" then Answer.find_or_create_by_word(word.strip).increment!(:loa_med)
+          when "3" then Answer.find_or_create_by_word(word.strip).increment!(:loa_low)
           else raise 'Not supported value "#{params[:answer][:LOA]" for LOA(!?)'
         end
-        Answer.find_or_create_by_Word(word.strip).increment!(:Occur)
+        Answer.find_or_create_by_word(word.strip).increment!(:occur)
       end
       flash[:notice]="Response submitted successfully!"
       respond_to do |format|
