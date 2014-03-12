@@ -1,2 +1,30 @@
-<h1>Admin#index</h1>
-<p>Find me in app/views/admin/index.html.erb</p>
+<h1>Admininstration panel</h1>
+
+<p>The admin has the power to change the list of words that appear in the surveys</p>
+
+You can add these words from this form:
+
+<%= form_for :adjectives, url: adjectives_path, html: {class: "form-group", id: "new_adjectives"} do |f| %>
+
+  <p>Select any adjectives that you believe describe me...</p>
+  
+  <div class="btn-group" data-toggle="buttons">
+    <% i=0%>
+      <% @answers.each do |word| %>
+        <% i=i+1%>
+          <label class="btn btn-info">
+            <%= check_box_tag "answer[Adjectives][]", word%>
+            <%= word.capitalize %>
+          </label>
+        <% if i==8 %>
+        </div><br/><div class="btn-group" data-toggle="buttons">
+          <%i=0%>
+        <%end%>
+      <%end%>
+  </div>
+  
+  <%= text_field_tag "answer[Adjectives][]", nil, placeholder: "...and even add your own! (separated by comma)", size: 55%>
+  
+  <%= f.submit "Submit!", class: "btn btn-success" %>
+
+<% end %>

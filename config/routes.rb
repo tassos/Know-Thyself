@@ -1,4 +1,7 @@
 Johari::Application.routes.draw do
+  get "surveys/index"
+  get "responses/index"
+  get "adjectives/index"
   get "admin/index"
   devise_for :admins
   devise_for :users
