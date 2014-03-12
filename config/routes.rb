@@ -1,4 +1,5 @@
 Johari::Application.routes.draw do
+  get "admin/index"
   devise_for :admins
   devise_for :users
   get "welcome/index"

@@ -1,0 +1,2 @@
+class AdjectivesController < ApplicationController
+end
