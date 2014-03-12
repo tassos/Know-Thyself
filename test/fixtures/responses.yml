@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  survey: 1
+  adjectives: MyString
+  loa: 1
+
+two:
+  survey: 1
+  adjectives: MyString
+  loa: 1
