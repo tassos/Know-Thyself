@@ -1,2 +1,2 @@
-module ResponsesHelper
+module ResponseHelper
 end

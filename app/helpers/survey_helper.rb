@@ -1,2 +1,2 @@
-module SurveysHelper
+module SurveyHelper
 end
