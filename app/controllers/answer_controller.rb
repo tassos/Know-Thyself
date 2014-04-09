@@ -1,4 +1,4 @@
-class AnswersController < ApplicationController
+class AnswerController < ApplicationController
   def new
     @answers = Answer.pluck(:word).sort
   end

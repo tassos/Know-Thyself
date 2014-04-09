@@ -1,4 +1,4 @@
-class ResponsesController < ApplicationController
+class ResponseController < ApplicationController
   def index
   end
 end
