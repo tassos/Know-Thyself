@@ -10,6 +10,12 @@ gem 'pg'
 # Use Devise for user authentication
 gem 'devise'
 
+# Use erd for visualising the database structure
+gem 'rails-erd'
+
+# Use Figaro to pass database environment to heroku
+gem 'figaro'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
