@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
   before_filter :authenticate_admin!
   def index
-    @adjectives = Adjectives.pluck(:word).sort
+    @adjectives = Adjective.pluck(:word).sort
   end
 end

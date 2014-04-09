@@ -1,8 +1,12 @@
 Johari::Application.routes.draw do
+  get "response/new"
+  get "survey/new"
+  get "user/index"
   get "surveys/index"
   get "responses/index"
   get "adjectives/index"
   get "admin/index"
+  get "users/index"
   devise_for :admins
   devise_for :users
   get "welcome/index"

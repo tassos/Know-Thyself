@@ -1,4 +1,4 @@
 class ResponseController < ApplicationController
-  def index
+  def new
   end
 end
