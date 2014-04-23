@@ -1,2 +1,52 @@
-<h1>Response#new</h1>
-<p>Find me in app/views/response/new.html.erb</p>
+<div class="container">
+  <h2>Share new opinion</h2>
+      
+  <%= form_for :answer, url: answers_path, html: {class: "form-group", id: "new_answer"} do |f| %>
+    <p>Select any adjectives that you believe describe me...</p>
+    
+    <div class="btn-group" data-toggle="buttons">
+      <% i=0%>
+        <% @answers.each do |word| %>
+          <% i=i+1%>
+            <label class="btn btn-info">
+              <%= check_box_tag "answer[Adjectives][]", word%>
+              <%= word.capitalize %>
+            </label>
+          <% if i==8 %>
+          </div><br/><div class="btn-group" data-toggle="buttons">
+            <%i=0%>
+          <%end%>
+        <%end%>
+    </div>
+    
+    <p>
+      <%= text_field_tag "answer[Adjectives][]", nil, placeholder: "...and even add your own! (separated by comma)", size: 55%>
+    </p>
+    <p>
+      <%= f.label :"You know me" %>
+      <%= f.select :LOA, options_for_select([[nil, nil], ['a little bit', 3], ['somehow', 2], ['very good', 1]]),{default: nil} %>
+    </p>
+    <p>
+      <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Review Answer</button>
+      <%= f.submit "Submit!", class: "btn btn-success" %>
+    </p>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Your opinion about me</h4>
+          </div>
+          <div class="modal-body">
+            <h1>Create a list of words that the user selected</h1>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Go back</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  
+</div>
