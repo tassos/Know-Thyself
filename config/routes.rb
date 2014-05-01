@@ -1,7 +1,4 @@
 Johari::Application.routes.draw do
-  get "response/new"
-  get "response/index"
-  get "admin/index"
   devise_for :admins
   devise_for :users
   get "welcome/index"
@@ -21,6 +18,8 @@ Johari::Application.routes.draw do
   resources :adjectives
   resources :users
   resources :surveys
+  resources :responses
+  resources :admins
 
   # Example resource route with options:
   #   resources :products do
