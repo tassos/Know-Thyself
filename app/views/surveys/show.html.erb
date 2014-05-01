@@ -1,3 +1,9 @@
 <div class="container">
-  <%= @survey %>
+  <%= @survey.name %>
+  
+  <p> Words you have selected:</p>
+  <% @survey.responses.find(:first, :conditions => "loa = 4").adjective_ids.each do |t| %>
+    <%= @adjectives.find(:first, :conditions => ["id IN (?)", t]).word %>
+  <%end%>
+  
 </div>

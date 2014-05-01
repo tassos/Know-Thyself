@@ -5,7 +5,8 @@
 <%end%>
 <% @surveys.each do |survey| %>
   <tr>
-    <td><%= link_to survey.id, survey %></td>
+    <td><%= survey.id%></td>
+    <td><%= link_to survey.name, survey %></td>
   </tr>
 <%end%>
 </table>

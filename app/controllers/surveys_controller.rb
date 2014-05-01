@@ -26,5 +26,7 @@ class SurveysController < ApplicationController
     @surveys=current_user.surveys
   end
   def show
+    @survey = Survey.find(params[:id])
+    @adjectives = Adjective.all
   end
 end
