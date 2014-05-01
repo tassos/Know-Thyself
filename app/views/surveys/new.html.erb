@@ -1,23 +1,30 @@
 <div class="container">
-  <h2>Share opinion about yourself</h2>
+  <h2>Share opinion about yourself</h2>     
   
-    <%= form_for @response, url: surveys_path, html: {class: "form-group", id: "new_response"} do |f| %>
+    <%= form_for @survey, url: surveys_path, html: {class: "form-group", id: "new_response"} do |u| %>
+    
+      <p>Give a description for your survey</p>
+        <%= u.text_field :name %>
+       
       <p>Select any adjectives that you believe describe you...</p>
       
-      <div class="btn-group" data-toggle="buttons">
-        <% i=0%>
-        <% @adjectives.each do |adj| %>
-          <% i=i+1%>
-            <label class="btn btn-info">
-              <%= check_box_tag "response[Adjectives][]", adj.id%>
-              <%= adj.word.capitalize %>
-            </label>
-          <% if i==8 %>
-          </div><br/><div class="btn-group" data-toggle="buttons">
-            <%i=0%>
+      <%= u.fields_for :respose do |f|%>
+      
+        <div class="btn-group" data-toggle="buttons">
+          <% i=0%>
+          <% @adjectives.each do |adj| %>
+            <% i=i+1%>
+              <label class="btn btn-info">
+                <%= check_box_tag "response[Adjectives][]", adj.id%>
+                <%= adj.word.capitalize %>
+              </label>
+            <% if i==8 %>
+            </div><br/><div class="btn-group" data-toggle="buttons">
+              <%i=0%>
+            <%end%>
           <%end%>
-        <%end%>
-      </div>
+        </div>
+      <%end%>
       <p>
         <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Review Answer</button>
       </p>
@@ -34,7 +41,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Go back</button>
-              <%= f.submit "Submit!", class: "btn btn-success" %>
+              <%= u.submit "Submit!", class: "btn btn-success" %>
             </div>
           </div>
         </div>

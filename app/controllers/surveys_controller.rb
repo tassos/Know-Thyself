@@ -13,7 +13,7 @@ class SurveysController < ApplicationController
         format.js {render :action => 'failure'}
       end
     else
-      @survey = Survey.new(user_id: current_user.id)
+      @survey = Survey.new(user_id: current_user.id, name: params[:survey][:name])
       @survey.save
   
       @response = Response.new(survey_id: @survey.id, loa: '4', adjective_ids: params[:response][:Adjectives])
@@ -26,6 +26,5 @@ class SurveysController < ApplicationController
     @surveys=current_user.surveys
   end
   def show
-   
   end
 end
