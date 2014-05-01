@@ -1,0 +1,13 @@
+<h1>Surveys#index</h1>
+<table>
+<% if @surveys.empty? %>
+  <tr><td>You don't have any surveys</td></tr>
+<%end%>
+<% @surveys.each do |survey| %>
+  <tr>
+    <td><%= survey.id %></td>
+  </tr>
+<%end%>
+</table>
+
+Create <%= link_to 'new survey', new_survey_path %>

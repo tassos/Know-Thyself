@@ -1,4 +1,4 @@
-class AdjectiveController < ApplicationController
+class AdjectivesController < ApplicationController
   def index
   end
   def create

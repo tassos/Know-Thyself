@@ -1,4 +1,4 @@
-class ResponseController < ApplicationController
+class ResponsesController < ApplicationController
   def new
     @answers = Adjective.pluck(:word).sort
   end

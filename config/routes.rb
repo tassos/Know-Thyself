@@ -1,12 +1,7 @@
 Johari::Application.routes.draw do
   get "response/new"
-  get "survey/new"
-  get "user/index"
-  get "surveys/index"
-  get "responses/index"
-  get "adjectives/index"
+  get "response/index"
   get "admin/index"
-  get "users/index"
   devise_for :admins
   devise_for :users
   get "welcome/index"
@@ -24,7 +19,8 @@ Johari::Application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   resources :adjectives
-  resources :answers
+  resources :users
+  resources :surveys
 
   # Example resource route with options:
   #   resources :products do
