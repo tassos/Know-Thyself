@@ -1,22 +1,22 @@
 <div class="container">
   <h2>Share opinion about yourself</h2>
   
-    <%= form_for @self_response, url: survey_path, html: {class: "form-group", id: "new_self_response"} do |f| %>
+    <%= form_for @response, url: surveys_path, html: {class: "form-group", id: "new_response"} do |f| %>
       <p>Select any adjectives that you believe describe you...</p>
       
       <div class="btn-group" data-toggle="buttons">
         <% i=0%>
-          <% @adjectives.each do |adj| %>
-            <% i=i+1%>
-              <label class="btn btn-info">
-                <%= check_box_tag "self_response[Adjectives][]", adj.id%>
-                <%= adj.word.capitalize %>
-              </label>
-            <% if i==8 %>
-            </div><br/><div class="btn-group" data-toggle="buttons">
-              <%i=0%>
-            <%end%>
+        <% @adjectives.each do |adj| %>
+          <% i=i+1%>
+            <label class="btn btn-info">
+              <%= check_box_tag "response[Adjectives][]", adj.id%>
+              <%= adj.word.capitalize %>
+            </label>
+          <% if i==8 %>
+          </div><br/><div class="btn-group" data-toggle="buttons">
+            <%i=0%>
           <%end%>
+        <%end%>
       </div>
       <p>
         <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Review Answer</button>
