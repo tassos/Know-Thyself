@@ -2,8 +2,8 @@
   <%= @survey.name %>
   
   <p> Words you have selected:</p>
-  <% @survey.responses.find(:first, :conditions => "loa = 4").adjective_ids.each do |t| %>
-    <%= @adjectives.find(:first, :conditions => ["id IN (?)", t]).word %>
+  <% @survey.responses.find(:first, :conditions => "loa = 4").adjectives.each do |t| %>
+    <%= t.word %>
   <%end%>
   
 </div>
