@@ -1,7 +1,6 @@
 Johari::Application.routes.draw do
   devise_for :admins
   devise_for :users
-  get "welcome/index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -17,8 +16,9 @@ Johari::Application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   resources :adjectives
   resources :users
-  resources :surveys
+  get 'surveys/:id/responses/new' => 'responses#new', as: :new_survey_response
   resources :responses
+  resources :surveys
   resources :admins
 
   # Example resource route with options:

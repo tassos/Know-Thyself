@@ -7,7 +7,7 @@ class SurveysController < ApplicationController
   end
   def create
     if params[:response][:Adjectives].empty?
-      flash[:notice]="Please fill in some Adjectives that describe me!"
+      flash[:notice]="Please fill in some Adjectives that describe your friend!"
       respond_to do |format|
         format.html { redirect_to new_answer_path }
         format.js {render :action => 'failure'}
