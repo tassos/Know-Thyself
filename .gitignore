@@ -20,3 +20,6 @@
 
 # Ignore various pdf files
 *.pdf
+
+# Ignore schema file
+schema.rb
