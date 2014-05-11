@@ -13,10 +13,10 @@ class SurveysController < ApplicationController
         format.js {render :action => 'failure'}
       end
     else
-      @survey = Survey.new(user_id: current_user.id, name: params[:survey][:name])
+      @survey = Survey.new(user_id: current_user.id, name: params[:survey][:name], uuid: SecureRandom.base64(n=16))
       @survey.save
   
-      @response = Response.new(survey_id: @survey.id, loa: '4', adjective_ids: params[:response][:Adjectives])
+      @response = Response.new(survey_id: @survey.id, loa: '4', adjective_ids: params[:response][:Adjectives], uuid: SecureRandom.hex(n=5))
       @response.save
       
       redirect_to surveys_path

@@ -12,7 +12,7 @@ class ResponsesController < ApplicationController
         format.js {render :action => 'failure'}
       end
     else
-      @response = Response.new(survey_id: params[:response][:survey_id], loa: params[:response][:loa], adjective_ids: params[:response][:Adjectives])
+      @response = Response.new(survey_id: params[:response][:survey_id], loa: params[:response][:loa], adjective_ids: params[:response][:Adjectives], uuid: SecureRandom.hex(n=5))
       @response.save
       
       redirect_to surveys_path
