@@ -1,0 +1,7 @@
+<p>This is what they said about you</p>
+
+<% @response.adjectives.each do |t|%>
+  <%= t.word %>
+<%end%>
+
+<%= @response.loa%>
