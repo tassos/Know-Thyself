@@ -19,6 +19,6 @@ class ResponsesController < ApplicationController
     end
   end
   def show
-    @response = Response.find(params[:id])
+    @response = Response.find(:first, :conditions => ["uuid = ?", params[:id]])
   end
 end

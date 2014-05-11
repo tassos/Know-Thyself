@@ -5,8 +5,7 @@
 <%end%>
 <% @surveys.each do |survey| %>
   <tr>
-    <td><%= survey.id%></td>
-    <td><%= link_to survey.name, survey %></td>
+    <td><%= link_to survey.name, surveys_path + "/" + survey.uuid.to_s%></td>
   </tr>
 <%end%>
 </table>

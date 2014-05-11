@@ -9,7 +9,7 @@
   <%= link_to 'Create new response', new_survey_response_path%>
   
   <% @survey.responses.find(:all, :conditions => "loa != 4").each do |r|%>
-    <%= link_to r.id, "/responses/#{r.id}" %> </br>
+    <%= link_to r.id, "/responses/#{r.uuid}" %> </br>
   <%end%>
   
 </div>

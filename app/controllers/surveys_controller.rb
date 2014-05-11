@@ -13,7 +13,7 @@ class SurveysController < ApplicationController
         format.js {render :action => 'failure'}
       end
     else
-      @survey = Survey.new(user_id: current_user.id, name: params[:survey][:name], uuid: SecureRandom.base64(n=16))
+      @survey = Survey.new(user_id: current_user.id, name: params[:survey][:name], uuid: SecureRandom.hex(n=8))
       @survey.save
   
       @response = Response.new(survey_id: @survey.id, loa: '4', adjective_ids: params[:response][:Adjectives], uuid: SecureRandom.hex(n=5))
@@ -26,7 +26,7 @@ class SurveysController < ApplicationController
     @surveys=current_user.surveys
   end
   def show
-    @survey = Survey.find(params[:id])
+    @survey = Survey.find(:first, :conditions =>["uuid = ?", params[:id]])
     @adjectives = Adjective.all
   end
 end
