@@ -2,7 +2,7 @@ class ResponsesController < ApplicationController
   def new
     @survey = Survey.find(params[:id])
     @response = Response.new
-    @adjectives = Adjective.all.order(:word)
+    @adjectives = Adjective.where(visibility:1).order(:word)
   end
   def create
     if params[:response][:Adjectives].empty?
