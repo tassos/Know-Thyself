@@ -1,6 +1,6 @@
 class ResponsesController < ApplicationController
   def new
-    @survey = Survey.find(params[:id])
+    @survey = Survey.find_by_uuid(params[:id])
     @response = Response.new
     @adjectives = Adjective.where(visibility:1).order(:word)
   end
@@ -19,6 +19,6 @@ class ResponsesController < ApplicationController
     end
   end
   def show
-    @response = Response.find(:first, :conditions => ["uuid = ?", params[:id]])
+    @response = Response.find_by_uuid(params[:id])
   end
 end
