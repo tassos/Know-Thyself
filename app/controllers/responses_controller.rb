@@ -20,5 +20,6 @@ class ResponsesController < ApplicationController
   end
   def show
     @response = Response.find_by_uuid(params[:id])
+    @map = ["","very good","somehow","a little bit"];
   end
 end

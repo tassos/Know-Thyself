@@ -3,5 +3,6 @@
 <% @response.adjectives.each do |t|%>
   <%= t.word %>
 <%end%>
-
-<%= @response.loa%>
+<p>
+The person responding said (s)he knows you <b><%= @map[@response.loa]%></b>
+</p>
