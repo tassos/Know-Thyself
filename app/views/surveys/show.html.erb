@@ -5,8 +5,10 @@
   <% @survey.responses.find(:first, :conditions => "loa = 4").adjectives.each do |t| %>
     <%= t.word %>
   <%end%>
-  
-  <%= link_to 'Create new response', new_survey_response_path%>
+  <br/><br/>
+  <p>Invite your friends to answer your survey, by sharing this link:<br/>
+  <%= link_to "#{request.base_url}#{new_survey_response_path}", new_survey_response_path%>
+  </p>
   
   <% @survey.responses.find(:all, :conditions => "loa != 4").each do |r|%>
     <%= link_to r.id, "/responses/#{r.uuid}" %> </br>
