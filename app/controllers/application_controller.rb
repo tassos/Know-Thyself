@@ -6,7 +6,9 @@ class ApplicationController < ActionController::Base
   before_action :count_surveys
   
   def count_surveys
-    @survey_count = Survey.find(:all, :conditions => ["user_id = ?", current_user.id]).count
+    if current_user.present?
+      @survey_count = Survey.find(:all, :conditions => ["user_id = ?", current_user.id]).count
+    end
   end
   
   protected
