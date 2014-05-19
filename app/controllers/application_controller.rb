@@ -3,6 +3,11 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :count_surveys
+  
+  def count_surveys
+    @survey_count = Survey.find(:all, :conditions => ["user_id = ?", current_user.id]).count
+  end
   
   protected
 

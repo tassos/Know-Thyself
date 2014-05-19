@@ -7,11 +7,24 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <% if user_signed_in? %>
-    <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+  
+<ul class="nav nav-tabs">
+  <li><%= link_to "Home", root_path%></li>
+    
+    <% if user_signed_in? %>
+    <li>
+      <%= link_to(surveys_path) do %>
+      Surveys <span class="badge"><%= @survey_count%></span>
+      <%end%>
+        
+    </li>
+    <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
   <% else %>
-    <%= link_to "Sign in", new_user_session_path%>  
+    <li><%= link_to "Sign in", new_user_session_path%></li>  
   <% end%>
+</ul>
+
+
   
   <% if admin_signed_in? %>
     <%= link_to "Admin sign out", destroy_admin_session_path, method: :delete %>
