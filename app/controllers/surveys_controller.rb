@@ -1,5 +1,6 @@
 class SurveysController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :user_owns_survey?, :only => :show
   def new
     @survey = Survey.new
     @response = Response.new
@@ -26,7 +27,13 @@ class SurveysController < ApplicationController
     @surveys=current_user.surveys
   end
   def show
-    @survey = Survey.find(:first, :conditions =>["uuid = ?", params[:id]])
-    @adjectives = Adjective.all
+    @survey = Survey.find_by_uuid(params[:id])
+    @responses = Response.find(:all, :conditions => ["loa != 4 AND survey_id = ? ",@survey.id])
+  end
+  
+  private
+  def user_owns_survey?
+    @survey = Survey.find_by_uuid(params[:id])
+    @survey.user_id == current_user.id
   end
 end
