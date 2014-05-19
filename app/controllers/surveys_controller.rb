@@ -1,6 +1,6 @@
 class SurveysController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :user_owns_survey?, :only => :show
+  before_filter :user_owns_survey?, :only => [:show, :destroy]
   def new
     @survey = Survey.new
     @response = Response.new
@@ -29,6 +29,11 @@ class SurveysController < ApplicationController
   def show
     @survey = Survey.find_by_uuid(params[:id])
     @responses = Response.find(:all, :conditions => ["loa != 4 AND survey_id = ? ",@survey.id])
+  end
+  
+  def destroy
+    @survey.destroy
+    redirect_to surveys_path
   end
   
   private
