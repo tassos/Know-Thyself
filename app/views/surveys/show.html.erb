@@ -10,7 +10,14 @@
   <%= link_to "#{request.base_url}#{new_survey_response_path}", new_survey_response_path%>
   </p>
   
-  <p>
+  <h2>Sum of adjectives from responses</h2>
+  <% @responses.each do |t| %>
+    <% t.adjectives.each do |k| %>
+      <%= k.word %>
+    <%end%>
+  <%end%>
+  
+  <h2>Individual responses</h2>
     <ol>
       <% @survey.responses.find(:all, :conditions => "loa != 4").each do |r|%>
         <li><%= link_to "Response", "/responses/#{r.uuid}" %></li>
