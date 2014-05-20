@@ -82,12 +82,12 @@ Johari::Application.configure do
   
   config.action_mailer.delivery_method = :smtp  
   config.action_mailer.smtp_settings = {
-    address: "server55.web-hosting.com",
-    port: 465,
-    domain: "eipieq.com",
-    enable_starttls_auto: true,
-    authentication: "plain",
-    user_name: "knowthyself@eipeq.com",
-    password: "3.141592653"
+    address: ENV['mailer_server'],
+    port: ENV['mailer_port'],
+    domain: ENV['mailer_domain'],
+    tls: true,
+    authentication: :login,
+    user_name: ENV['mailer_user'],
+    password: ENV['mailer_pass']
   }
 end
