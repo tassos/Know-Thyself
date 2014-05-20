@@ -78,5 +78,16 @@ Johari::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
   
-  config.action_mailer.default_url_options = { :host => 'http://johari.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'localhost' }
+  
+  config.action_mailer.delivery_method = :smtp  
+  config.action_mailer.smtp_settings = {
+    address: "server55.web-hosting.com",
+    port: 465,
+    domain: "eipieq.com",
+    enable_starttls_auto: true,
+    authentication: "plain",
+    user_name: "knowthyself@eipeq.com",
+    password: "3.141592653"
+  }
 end
