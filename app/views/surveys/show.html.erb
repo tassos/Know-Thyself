@@ -14,10 +14,8 @@
   <%= link_to 'Delete!', surveys_path + "/" + @survey.uuid.to_s, method: :delete, data: { confirm: 'Are you sure you want to delete this survey? This action is not reversible' }, class: "btn btn-danger" %>
   
   <h2>Sum of adjectives from responses</h2>
-  <% @responses.each do |t| %>
-    <% t.adjectives.each do |k| %>
-      <%= k.word %>
-    <%end%>
+  <% @words.each do |t| %>
+      <%= t %>
   <%end%>
   
   <h2>Individual responses</h2>
