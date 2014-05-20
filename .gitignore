@@ -23,3 +23,6 @@
 
 # Ignore schema file
 schema.rb
+
+# Ignore development environment setting files
+config/environments/development.rb
