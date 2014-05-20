@@ -2,8 +2,8 @@
   <h2>Share new opinion</h2>
       
     <%= form_for @response, url: responses_path, html: {class: "form-group", id: "new_response"} do |f| %>
-       
-      <p>Select any adjectives that you believe describe you...</p>
+      
+        <p>Select any adjectives that you believe describe <%= @survey.user.name%>...</p>
       
         <div class="btn-group" data-toggle="buttons">
           <% i=0%>
@@ -20,7 +20,7 @@
           <%end%>
         </div>
       <p>
-        <%= f.label :"You know me" %>
+        <%= f.label "You know " + @survey.user.name.capitalize %>
         <%= f.select :loa, options_for_select([[nil, nil], ['a little bit', 3], ['somehow', 2], ['very good', 1]]),{default: nil} %>
       </p>
       <p>
