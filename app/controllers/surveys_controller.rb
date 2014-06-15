@@ -7,10 +7,10 @@ class SurveysController < ApplicationController
     @adjectives = Adjective.where(visibility:1).order(:word)
   end
   def create
-    if params[:response][:Adjectives].empty?
-      flash[:notice]="Please fill in some Adjectives that describe your friend!"
+    if params[:response].nil? || params[:survey][:name].empty?
+      flash[:notice]="Please select some adjectives that describe yourself and a description for your survey!"
       respond_to do |format|
-        format.html { redirect_to new_answer_path }
+        format.html { redirect_to new_survey_path }
         format.js {render :action => 'failure'}
       end
     else

@@ -39,6 +39,7 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Go back</button>
               <%= f.hidden_field :survey_id, value: @survey.id%>
+              <%= f.hidden_field :survey_uuid, value: @survey.uuid%>
               <%= f.submit "Submit!", class: "btn btn-success" %>
             </div>
           </div>
