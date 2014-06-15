@@ -6,10 +6,9 @@ class ResponsesController < ApplicationController
   end
   def create
     if params[:response][:Adjectives].nil? || !params[:response][:loa].in?([1,2,3])
-      flash[:notice]="Please select some adjectives that describe your friend and select the level of acquaintance!"
+      flash[:alert]="Please select some adjectives that describe your friend and select how well you know each other!"
       respond_to do |format|
         format.html { redirect_to new_survey_response_path(params[:response][:survey_uuid])}
-        format.js {render :action => 'failure'}
       end
     else
       @response = Response.new(survey_id: params[:response][:survey_id], loa: params[:response][:loa], adjective_ids: params[:response][:Adjectives], uuid: SecureRandom.hex(n=5))

@@ -8,10 +8,9 @@ class SurveysController < ApplicationController
   end
   def create
     if params[:response].nil? || params[:survey][:name].empty?
-      flash[:notice]="Please select some adjectives that describe yourself and a description for your survey!"
+      flash[:alert]="Please enter a description for your survey and select some adjectives that describe you!"
       respond_to do |format|
         format.html { redirect_to new_survey_path }
-        format.js {render :action => 'failure'}
       end
     else
       @survey = Survey.new(user_id: current_user.id, name: params[:survey][:name], uuid: SecureRandom.hex(n=8))
