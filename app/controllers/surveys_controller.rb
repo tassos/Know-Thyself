@@ -20,7 +20,7 @@ class SurveysController < ApplicationController
       @response = Response.new(survey_id: @survey.id, loa: '4', adjective_ids: params[:response][:Adjectives], uuid: SecureRandom.hex(n=5))
       @response.save
       
-      redirect_to surveys_path
+      redirect_to survey_path(@survey.uuid)
     end
   end
   def index
