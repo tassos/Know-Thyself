@@ -1,5 +1,10 @@
 <div class="container">
-  <h2>Share opinion about yourself</h2>     
+  <h2>Share opinion about yourself</h2>
+  
+  <blockquote>Before you send out a survey for your acquaintances, you need to first type a description for your survey. This will be used
+    from you later on, to identify what kind of survey it is. The description should be short (e.g. 'for friends', 'for colleagues' etc).
+    Afterwards, you need to select several adjectives that you believe they describe you. You can do that by simply clicking on the words.
+    Once you are done, click on 'Review Answer'.</blockquote>
   
     <%= form_for @survey, url: surveys_path, html: {class: "form-group", id: "new_response"} do |u| %>
     
@@ -26,7 +31,7 @@
         </div>
       <%end%>
       <p>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Review Answer</button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Submit</button>
       </p>
   
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -34,10 +39,10 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title" id="myModalLabel">Your opinion about me</h4>
+
             </div>
             <div class="modal-body">
-              <h1>Create a list of words that the user selected</h1>
+              <h1>Are you sure you want to create a survey?</h1>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Go back</button>

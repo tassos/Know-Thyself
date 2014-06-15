@@ -24,7 +24,7 @@
         <%= f.select :loa, options_for_select([[nil, nil], ['a little bit', 3], ['somehow', 2], ['very good', 1]]),{default: nil} %>
       </p>
       <p>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Review Answer</button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Submitting a response</button>
       </p>
   
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -32,10 +32,9 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title" id="myModalLabel">Your opinion about me</h4>
             </div>
             <div class="modal-body">
-              <h1>Create a list of words that the user selected</h1>
+              <h1>Are you sure you want to submit the response?</h1>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Go back</button>

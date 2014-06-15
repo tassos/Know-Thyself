@@ -1,24 +1,28 @@
 <div class="container">
-  <%= @survey.name %>
-  
-  <p> Words you have selected:</p>
+  <h1>Survey</h1>
+  <p><strong>Name:</strong> <%= @survey.name %></p>
+  <p><strong>Words you have selected:</strong>
   <% @survey.responses.find(:first, :conditions => "loa = 4").adjectives.each do |t| %>
     <%= t.word %>
-  <%end%>
-  <br/><br/>
+  <%end%></p>
   <h2>Administration</h2>
   <p>Invite your friends to answer your survey, by sharing this link:<br/>
   <%= link_to "#{request.base_url}#{new_survey_response_path}", new_survey_response_path%>
   </p>
-  <p>Delete this survey</p>
+  <h2>Delete this survey</h2>
+  <i>Just keep in mind that deleting a survey is non-reversible</i></br>
   <%= link_to 'Delete!', surveys_path + "/" + @survey.uuid.to_s, method: :delete, data: { confirm: 'Are you sure you want to delete this survey? This action is not reversible' }, class: "btn btn-danger" %>
   
   <h2>Sum of adjectives from responses</h2>
-  <% @words.each do |t| %>
+  <i>This is a list of words that appeared in the answers of your acquaintances</i></br>
+  
+  <p><% @words.each do |t| %>
       <%= t %>
-  <%end%>
+  <%end%></p>
   
   <h2>Individual responses</h2>
+  <i>Here you can access all the individual responses to your survey.</i>
+  <p>
     <ol>
       <% @survey.responses.find(:all, :conditions => "loa != 4").each do |r|%>
         <li><%= link_to "Response", "/responses/#{r.uuid}" %></li>

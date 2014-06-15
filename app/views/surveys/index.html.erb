@@ -1,13 +1,25 @@
-<h1>Surveys#index</h1>
-<table>
-<% if @surveys.empty? %>
-  <tr><td>You don't have any surveys</td></tr>
-<%end%>
-<% @surveys.each do |survey| %>
-  <tr>
-    <td><%= link_to survey.name, surveys_path + "/" + survey.uuid.to_s%></td>
-  </tr>
-<%end%>
+<div class="container">
+
+<h1>List of Surveys</h1>
+
+<p>Here you see a list of all the surveys you have created and the answers that each one has received.</p> 
+
+<table class="table table-striped">
+  <% if @surveys.empty? %>
+    <tr><td>You don't have any surveys :(</td></tr>
+  <%else%>
+    <tr>
+      <th>Survey Name</th>
+      <th>No. of answers</th>
+    </tr>
+    <% @surveys.each do |survey| %>
+      <tr>
+        <td><%= link_to survey.name, surveys_path + "/" + survey.uuid.to_s%></td>
+        <td><%= survey.responses.count-1%></td>
+      </tr>
+    <%end%>
+  <%end%>
 </table>
 
-Create <%= link_to 'new survey', new_survey_path %>
+<p><%= button_to 'Create new survey', new_survey_path, class: 'btn btn-success', method: :get %></p>
+</div>
