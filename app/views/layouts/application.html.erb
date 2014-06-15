@@ -8,28 +8,58 @@
 </head>
 <body>
   
-<ul class="nav nav-tabs">
-  <li><%= link_to "Home", root_path%></li>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
     
-    <% if user_signed_in? %>
-    <li>
-      <%= link_to(surveys_path) do %>
-      Surveys <span class="badge"><%= @survey_count%></span>
-      <%end%>
-    </li>
-    <li><%= link_to "User", edit_user_registration_path %></li>
-    <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
-  <% else %>
-    <li><%= link_to "Sign in", new_user_session_path%></li>  
-  <% end%>
-  <li><%= link_to "About", about_path %></li>
-</ul>
-
-
-  
-  <% if admin_signed_in? %>
-    <%= link_to "Admin sign out", destroy_admin_session_path, method: :delete %>
-  <%end%>
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Know Thyself!</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <% if user_signed_in? %>
+          <li><%= link_to 'Home', root_path %></li>
+          <li>
+            <%= link_to(surveys_path) do %>
+              Surveys <span class="badge" data-toggle="tooltip" data-placement="right" title="Tooltip on right"><%= @survey_count%></span>
+            <%end%>
+          </li>
+        <% end%>
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to 'About', about_path %></li>
+        <% if user_signed_in? %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Edit details", edit_user_registration_path %></li>
+              <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+            </ul>
+          </li>
+        <% else%>
+          <li><%= link_to "Sign up", new_user_registration_path%></li>
+          <li><%= link_to "Sign in", new_user_session_path%></li>
+        <%end%>
+        <% if admin_signed_in? %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Edit details", edit_admin_registration_path %></li>
+              <li><%= link_to "Sign out", destroy_admin_session_path, method: :delete %></li>
+            </ul>
+          </li>
+        <%end%>
+      </ul>
+    </div>
+  </div>
+</nav>
 
 <% flash.each do |key, value| %>
   <div class="<%= flash_class(key) %> alert-dismissable fade in">
