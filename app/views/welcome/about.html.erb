@@ -1,23 +1,88 @@
 <div class="container">
-  <p>Welcome to an interactive web-application that allows us to know ourselves better.</p>
-  <p>This application is based on the famour technique that <b>Jo</b>seph Luft and <b>Harri</b>ngton Ingham developed and called the 'Johari window'.
-    The principle of the technique is that you select several adjectives from a pre-defined list that you believe that they describe you.
-    Then you ask several of your acquaintances to do the same and based on your answers, you can learn several things about yourself:</p>
-    <p>
-      <ul>
-        <li>Open arena: These are aspects of yourself that are both known to yourself and to the others</li>
-        <li>Hidden or Facade: These are aspects that are known to you but not to the others</li>
-        <li>Blind spot: These are aspects that are known to others but not to you</li>
-        <li>Unknown: These are aspects that are neither know to you nor to others </li>
-      </ul>
-    </p>
-    <p>You can read more on the technique and on the research on the
-      <a href="https://en.wikipedia.org/wiki/Johari_window" target="_blank">Johari window</a> wikipedia article.</p>
-
-<p>So, this is an online interactive version of a Johari window. But since it's a little bit different, I decided not to call it like that
-  but give it the more poetic title of 'Know thyself' which relates to the ancient Greek 'Γνώθι σεαυτό'. 'Γνώθι σεαυτό' was an aphorism given
-  often by the Oracle of Delphi and <i>'is applied to those whose boasts exceed what they are.'</i> 
-  <a href="http://www.stoa.org/sol-bin/search.pl?db=REAL&search_method=QUERY&login=guest&enlogin=guest&user_list=LIST&page_num=1&searchstr=gamma,333&field=adlerhw_gr&num_per_page=1" target="_blank">[1]</a></p>
-  
-  <p>If you have suggestions or feedback, please send me an e-mail <a href="mailto:knowthyself@eipieq.com">here</a>.</p>
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+            What is Know thyself?
+          </a>
+        </h4>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse">
+        <div class="panel-body">
+          <p>Welcome to an interactive web-application that allows us to know ourselves better.</p>
+          <p>This application is based on the famour technique that <b>Jo</b>seph Luft and <b>Harri</b>ngton Ingham developed and called the 'Johari window'.
+          The principle of the technique is that you select several adjectives from a pre-defined list that you believe that they describe you.
+          Then you ask several of your acquaintances to do the same and based on your answers, you can learn several things about yourself:</p>
+          <p>
+          <ul>
+            <li>Open arena: These are aspects of yourself that are both known to yourself and to the others</li>
+            <li>Hidden or Facade: These are aspects that are known to you but not to the others</li>
+            <li>Blind spot: These are aspects that are known to others but not to you</li>
+            <li>Unknown: These are aspects that are neither know to you nor to others </li>
+          </ul>
+          </p>
+          <p>You can read more on the technique and on the research on the
+          <a href="https://en.wikipedia.org/wiki/Johari_window" target="_blank">Johari window</a> wikipedia article.</p>
+    
+          <p>So, this is an online interactive version of a Johari window. But since it's a little bit different, I decided to give it
+            the more poetic title of 'Know thyself' which is the translation of the ancient Greek 'Γνώθι σεαυτό'.
+            'Γνώθι σεαυτό' was an aphorism given often by the Oracle of Delphi and <i>'is applied to those
+              whose boasts exceed what they are.'</i> 
+          <a href="http://www.stoa.org/sol-bin/search.pl?db=REAL&search_method=QUERY&login=
+          guest&enlogin=guest&user_list=LIST&page_num=1&searchstr=gamma,333&field=adlerhw_gr&num_per_page=1" target="_blank">[1]</a></p>
+          <p>I believe this application can help people better understand themselves and how others perceive them, which can allows
+            one to boast less.</p>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+            Why did I do it?
+          </a>
+        </h4>
+      </div>
+      <div id="collapseTwo" class="panel-collapse collapse">
+        <div class="panel-body">
+          <p>When I first came across the idea of the Johari window, I thought it would be great to try it with my friends. However,
+            the technique poses three major flows: 1) It requires to be physically close to someone 2) the responses might be
+            biased, since it's difficult to keep them anonymous and 3) all the adjectives of the survey have a possitive connotation.
+          <p>While looking online to solve these two problems, I found an <a href="http://kevan.org/johari" target="_blank">online service</a>
+            that was solving two of these problems. It was online, thus you didn't have to be close to those taking the survey, and it
+            the responses were anonymous. However, the problem of a limited selection of words was still there. That's why I thought of
+            creating an online interactive application that would solve the third problem as well.</p>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+            Progress so far and ideas for the future
+          </a>
+        </h4>
+      </div>
+      <div id="collapseFour" class="panel-collapse collapse">
+        <div class="panel-body">
+          <p>At the moment, the application supports users to create accounts and start their own surveys. They are able to send
+            their own surveys and gather responses from their friends. Then they can see an aggregate of the responses they received, as
+            well as each response individually.</p>
+          <p>I have many ideas for features to improve the functionality of the application such as:
+            <ul>
+              <li>Better projection of the results</li>
+              <li>Exporting the results, for more extensive analysis</li>
+              <li>Sending invitations for surveys through the system</li>
+              <li>...</li>
+            </ul>
+            You can follow the development of the project and access or fork the code on
+            <a href="http://www.github.com/tassos/Johari" target="_blank">github</a>. If you have any ideas for new features, please
+            let me know. I would love to hear your opinions and feedback for this application, so please don't hesitate to contact me.
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
+  <div>If you have suggestions or feedback, please send me an <a href="mailto:knowthyself@eipieq.com">e-mail</a>.</div>
+</div>
