@@ -22,7 +22,7 @@ class ResponsesController < ApplicationController
       if user_signed_in?
         redirect_to survey_path(@response.survey.uuid)
       else
-        redirect_to root
+        redirect_to thanks_path
       end
     end
   end
