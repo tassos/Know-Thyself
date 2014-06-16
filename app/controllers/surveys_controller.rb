@@ -8,7 +8,11 @@ class SurveysController < ApplicationController
   end
   def create
     if params[:response].nil? || params[:survey][:name].empty?
-      flash[:alert]="Please enter a description for your survey and select some adjectives that describe you!"
+      if params[:response].nil?
+        flash[:alert]="Please select some adjectives that describe you!"
+      else
+        flash[:alert]="Please enter a description for your survey!"
+      end
       respond_to do |format|
         format.html { redirect_to new_survey_path }
       end
