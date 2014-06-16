@@ -3,7 +3,7 @@ module ApplicationHelper
     case level
         when :notice then "alert alert-info"
         when :success then "alert alert-success"
-        when :error then "alert alert-warning"
+        when :warning then "alert alert-warning"
         when :alert then "alert alert-danger"
         else "alert alert-info"
     end

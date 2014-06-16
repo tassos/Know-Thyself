@@ -22,6 +22,7 @@ Johari::Application.routes.draw do
   resources :responses
   resources :surveys
   resources :admins
+  resources :addresses, only: :create
 
   # Example resource route with options:
   #   resources :products do
