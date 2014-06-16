@@ -18,6 +18,7 @@ class ResponsesController < ApplicationController
       @response = Response.new(survey_id: params[:response][:survey_id], loa: params[:response][:loa], adjective_ids: params[:response][:Adjectives], uuid: SecureRandom.hex(n=5))
       @response.save
       
+      flash[:notice]="Response sent successfully!"
       if user_signed_in?
         redirect_to survey_path(@response.survey.uuid)
       else
