@@ -5,6 +5,12 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  
+  <script type="text/javascript">
+    $(function () {
+        $("[data-toggle='tooltip']").tooltip();
+    });
+  </script>
 </head>
 <body>
   
@@ -27,7 +33,7 @@
           <li><%= link_to 'Home', root_path %></li>
           <li>
             <%= link_to(surveys_path) do %>
-              Surveys <span class="badge" data-toggle="tooltip" data-placement="right" title="Tooltip on right"><%= @survey_count%></span>
+              Surveys <span class="badge" data-toggle="tooltip" data-placement="right" title="Surveys created"><%= @survey_count%></span>
             <%end%>
           </li>
         <% end%>
@@ -69,6 +75,7 @@
 <% end %>
 
 <%= yield %>
+
 
 </body>
 </html>
