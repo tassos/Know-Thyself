@@ -1,8 +1,11 @@
-<p>This is what they said about you</p>
-
-<% @response.adjectives.each do |t|%>
-  <%= t.word %>
-<%end%>
-<p>
-The person responding said (s)he knows you <b><%= @map[@response.loa]%></b>
-</p>
+<div class="container">
+  <h2>Response</h2>
+  <p>This is what they said about you</p>
+  
+  <blockquote>
+    <% @response.adjectives.each do |t|%>
+      <%= t.word %>
+    <%end%>
+  </blockquote>
+  <p>The person responding said (s)he knows you <b><%= @map[@response.loa]%></b></p>
+</div>
