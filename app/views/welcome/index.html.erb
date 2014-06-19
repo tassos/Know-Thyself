@@ -8,11 +8,15 @@
   <p>If you want to know more about this application, why it was created and share your feedback, check the <%= link_to "About", about_path %> page.</p>
   <p>You can also subscribe to the newsletter, in order to receive updates about the Know thyself application. Just fill in your e-mail address below</p>
   </br></br>
-  <%= form_for @address, url: addresses_path do |f| %>
-    <div class="form-group"><%= f.label :email %>
-    <%= f.email_field :email, :autofocus => true, class: "form-control"%></div>
-    
-    <div class="form-group"><%= f.submit "Add me to the newsletter", class: "btn btn-success" %></div>
-  <%end%>
-  
+    <div class="row">
+      <div class="col-md-3">
+      <%= form_for @address, url: addresses_path do |f| %>
+        <div class="form-group"><%= f.label :email %>
+        <%= f.email_field :email, :autofocus => true, class: "form-control"%></div>
+        
+        <div class="form-group"><%= f.submit "Add me to the newsletter", class: "btn btn-success", name: 'add_button' %>
+        <%= f.submit "Remove me to the newsletter", class: "btn btn-danger", name: 'remove_button' %></div>
+      <%end%>
+    </div>
+  </div>
 </div>
