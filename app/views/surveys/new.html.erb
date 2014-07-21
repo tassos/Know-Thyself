@@ -29,6 +29,8 @@
             <%end%>
           <%end%>
         </div>
+        <p>...and add new words by typing them below.</p>
+        <p><%= text_field_tag "response[newAdjectives][]", nil, placeholder: "add as many words as you want! (separated by comma)", size: 55%></p>
       <%end%>
       <p>
         <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Submit</button>

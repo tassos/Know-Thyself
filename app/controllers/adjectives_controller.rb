@@ -15,7 +15,7 @@ class AdjectivesController < ApplicationController
         Adjective.find_or_create_by_word(word.downcase)
         @adjective=Adjective.find_by_word(word.downcase)
         @adjective.visibility = 1
-        @adjective.save        
+        @adjective.save
       end
     end
   redirect_to admins_path
