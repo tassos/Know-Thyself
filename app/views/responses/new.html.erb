@@ -1,31 +1,40 @@
 <div class="container">
-  <h2>Share new opinion</h2>
-      
-    <%= form_for @response, url: responses_path, html: {class: "form-group", id: "new_response"} do |f| %>
-      
-        <p>Select any adjectives that you believe describe <%= @survey.user.name%>...</p>
-      
-        <div class="btn-group" data-toggle="buttons">
-          <% i=0%>
-          <% @adjectives.each do |adj| %>
-            <% i=i+1%>
-              <label class="btn btn-info">
-                <%= check_box_tag "response[Adjectives][]", adj.id.to_i%>
-                <%= adj.word.capitalize %>
-              </label>
-            <% if i==8 %>
-            </div><br/><div class="btn-group" data-toggle="buttons">
-              <%i=0%>
-            <%end%>
-          <%end%>
-        </div>
-        <p>...and add new words by typing them below.</p>
+  <h2>Share new opinion about <%= @survey.user.name.capitalize %></h2>
   
-      <p><%= text_field_tag "response[newAdjectives][]", nil, placeholder: "add as many words as you want! (separated by comma)", size: 55%></p>
-      <p>
-        <%= f.label "You know " + @survey.user.name.capitalize %>
-        <%= f.select :loa, options_for_select([[nil, nil], ['a little bit', 3], ['somehow', 2], ['very good', 1]]),{default: nil} %>
-      </p>
+  <div class="row">
+    <div class="col-md-9">
+      <p>You landed in this page, because <%= @survey.user.name.capitalize %> asked you for your opinion about him/her. You can choose a
+      set of words from the predefined list by clicking on them, or enter your words if you want by typing them and separating them
+      with a comma. You should submit 6 to 7 words and remember that your response will be anonymous.</p>
+    </div>
+  </div>
+      
+  <div class="row">
+    <div class="col-md-9">
+      <%= form_for @response, url: responses_path, html: {class: "form-group", id: "new_response"} do |f| %>
+      
+            <div class="btn-group" data-toggle="buttons">
+              <% i=0%>
+              <% @adjectives.each do |adj| %>
+                <% i=i+1%>
+                  <label class="btn btn-info">
+                    <%= check_box_tag "response[Adjectives][]", adj.id.to_i%>
+                    <%= adj.word.capitalize %>
+                  </label>
+                <% if i==8 %>
+                </div><br/><div class="btn-group" data-toggle="buttons">
+                  <%i=0%>
+                <%end%>
+              <%end%>
+            </div>
+      
+          <p><%= text_field_tag "response[newAdjectives][]", nil, placeholder: "or add other words if you want! (separated by comma)", size: 55%></p>
+          <p>
+            <%= f.label :loa, "You know " + @survey.user.name.capitalize %>
+            <%= f.select :loa, options_for_select([[nil, nil], ['a little bit', 3], ['somehow', 2], ['very good', 1]]),{default: nil} %>
+          </p>
+        </div>
+      </div>
       <p>
         <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Submitting a response</button>
       </p>
