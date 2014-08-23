@@ -43,15 +43,20 @@ class SurveysController < ApplicationController
     @surveys=current_user.surveys
   end
   def show
-    words = []
-    @survey = Survey.find_by_uuid(params[:id])
-    @responses = Response.find(:all, :conditions => ["loa != 4 AND survey_id = ? ",@survey.id])
-    @responses.each do |t|
-      t.adjectives.each do |k|
-        words << k.word
+    if user_owns_survey?
+      words = []
+      @survey = Survey.find_by_uuid(params[:id])
+      @responses = Response.find(:all, :conditions => ["loa != 4 AND survey_id = ? ",@survey.id])
+      @responses.each do |t|
+        t.adjectives.each do |k|
+          words << k.word
+        end
       end
+      @words = words.uniq
+    else
+      flash[:alert]="You are not the owner of this survey"
+      redirect_to root_path
     end
-    @words = words.uniq
   end
   
   def destroy
