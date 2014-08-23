@@ -4,12 +4,12 @@
   <div class="row">
     <div class="col-md-8">
       <p>Dear guest,</p>
-      Welcome to the 'Know thyself' web-application! This is the place that we learn from others and become better in life. 
+      Welcome to the 'Know thyself' web-application! This is the place where we learn from others and become better in life. 
       If you want then to know more about you and what others think of you, then
       <% if !user_signed_in? %><%= link_to "create an account", new_user_registration_path %> and <%end%> <%= link_to "create a survey", new_survey_path %> to share among your friends.</p>
       
       <p>If you want to know more about this application, why it was created and share your feedback, check the <%= link_to "about", about_path %> page.</p>
-      <p>You can also subscribe to the newsletter, in order to receive updates about the Know thyself application. Just fill in your e-mail address below</p>
+      <p>You can also subscribe to the newsletter, in order to receive updates about the Know thyself application. Just fill in your e-mail address on the right of the screen</p>
       </br></br>
     </div>
     <div class="col-sm-3">
@@ -17,7 +17,7 @@
       <strong>20/06/2014</strong>: Know Thyself application is launched!
       <h3>Newsletter</h3>
       <p>If you want to receive news and updates about the application, then subscribe to the newsletter.
-      I expect to send 3-4 e-mails on a yearly basis, and of-course, you can always unsubscribe if don't want to receive updates.</p>
+      I expect to send 3-4 e-mails on a yearly basis, and of course, you can always unsubscribe if you don't want to receive updates anymore.</p>
       <%= form_for @address, url: addresses_path do |f| %>
         <div class="form-group"><%= f.label :email %>
           <%= f.email_field :email, :autofocus => true, class: "form-control"%>
