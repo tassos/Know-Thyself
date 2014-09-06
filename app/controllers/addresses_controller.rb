@@ -12,8 +12,12 @@ class AddressesController < ApplicationController
       end
     elsif params[:remove_button]
       @address = Address.find_by_email(params[:address][:email])
-      @address.destroy
-      flash[:notice]="You are now unsubscribed from the newsletter"
+      if @address.nil?
+        flash[:warning]="This e-mail address was not registered in this newletter."
+      else
+        @address.destroy
+        flash[:notice]="You are now unsubscribed from the newsletter."
+      end
     end
      
     redirect_to root_path

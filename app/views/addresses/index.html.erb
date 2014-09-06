@@ -4,7 +4,7 @@
   <% @addresses.each do |address| %>
     <% if !address.email.nil? %>
       <% i=i+1 %>
-      <%= puts i.to_s + '.' + address.email %><br>
+      <%= i.to_s + '. ' + address.email %><br>
     <% end %>
   <%end%>
 </div>
