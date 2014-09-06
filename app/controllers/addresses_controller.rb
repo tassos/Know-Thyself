@@ -1,4 +1,6 @@
 class AddressesController < ApplicationController
+  before_filter :authenticate_admin!, only: :index
+  
   def create
     if params[:add_button]
       @address = Address.new(email: params[:address][:email])
@@ -16,6 +18,7 @@ class AddressesController < ApplicationController
      
     redirect_to root_path
   end
+  
   def index
     @addresses = Address.all
   end
