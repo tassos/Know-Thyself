@@ -19,7 +19,7 @@ class ResponsesController < ApplicationController
       if !params[:response][:newAdjectives].nil?
         params[:response][:newAdjectives][0].split( /, */ ).uniq.each do |word|
           newAdj = Adjective.find_or_create_by_word(word.downcase)
-          newAdj.visibility = 1
+          newAdj.visibility = 0
           newAdj.save
           ids << newAdj.id
         end
