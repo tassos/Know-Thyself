@@ -18,18 +18,23 @@ class SurveysController < ApplicationController
       end
     else
       ids = Adjective.update(params[:response][:newAdjectives],0)
-      puts ids
-      if !params[:response][:Adjectives].nil?
-        params[:response][:Adjectives].each {|s| ids << s.to_i}
-      end
-      @survey = Survey.new(user_id: current_user.id, name: params[:survey][:name], uuid: SecureRandom.hex(n=8))
-      @survey.save
-  
-      @response = Response.new(survey_id: @survey.id, loa: '4', adjective_ids: ids, uuid: SecureRandom.hex(n=5))
-      @response.save
       
-      flash[:notice]="Survey created successfully!"
-      redirect_to survey_path(@survey.uuid)
+      if ids == 'error'
+        flash[:alert]="The word you entered was too long!"
+        redirect_to new_survey_path
+      else
+        if !params[:response][:Adjectives].nil?
+          params[:response][:Adjectives].each {|s| ids << s.to_i}
+        end
+        @survey = Survey.new(user_id: current_user.id, name: params[:survey][:name], uuid: SecureRandom.hex(n=8))
+        @survey.save
+    
+        @response = Response.new(survey_id: @survey.id, loa: '4', adjective_ids: ids, uuid: SecureRandom.hex(n=5))
+        @response.save
+        
+        flash[:notice]="Survey created successfully!"
+        redirect_to survey_path(@survey.uuid)
+      end
     end
   end
   def index
