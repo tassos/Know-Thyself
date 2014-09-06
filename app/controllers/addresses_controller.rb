@@ -16,4 +16,7 @@ class AddressesController < ApplicationController
      
     redirect_to root_path
   end
+  def index
+    @addresses = Address.all
+  end
 end

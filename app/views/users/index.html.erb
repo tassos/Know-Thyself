@@ -1,9 +1,13 @@
 <div class="container">
   <table>
+    <% i=0%>
     <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to user.name, edit_user_registration_path %></td>
-      </tr>
+      <%if !user.name.nil?%>
+        <% i=i+1%>
+        <tr>
+          <td><%=i%>.</td><td><%= link_to user.name, edit_user_registration_path %></td>
+        </tr>
+      <%end%>
     <%end%>
   </table>
 </div>
