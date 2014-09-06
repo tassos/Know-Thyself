@@ -15,15 +15,7 @@ class ResponsesController < ApplicationController
         format.html { redirect_to new_survey_response_path(params[:response][:survey_uuid])}
       end
     else
-      ids = []
-      if !params[:response][:newAdjectives].nil?
-        params[:response][:newAdjectives][0].split( /, */ ).uniq.each do |word|
-          newAdj = Adjective.find_or_create_by_word(word.downcase)
-          newAdj.visibility = 0
-          newAdj.save
-          ids << newAdj.id
-        end
-      end
+      ids = Adjective.update(params[:response][:newAdjectives],0)
       if !params[:response][:Adjectives].nil?
         params[:response][:Adjectives].each {|s| ids << s.to_i}
       end
