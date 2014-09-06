@@ -1,6 +1,10 @@
 class AdjectivesController < ApplicationController
+  before_filter :authenticate_admin!, :only => [:index]
+  
   def index
+    @adjectives = Adjective.where(visibility:1).pluck(:word).sort
   end
+  
   def create
     unless params[:answer][:toRemove].nil?
       params[:answer][:toRemove].uniq.each do |word|
@@ -18,6 +22,6 @@ class AdjectivesController < ApplicationController
         @adjective.save
       end
     end
-  redirect_to admins_path
+  redirect_to adjectives_path
   end
 end
