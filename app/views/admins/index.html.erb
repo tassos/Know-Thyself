@@ -1,30 +1,30 @@
-<h1>Admininstration panel</h1>
-
-<%= link_to "Sign-out admin", destroy_admin_session_path, method: :delete %>
-
-<p>The admin has the power to change the list of words that appear in the surveys.
-  <br>You can select the words that you don't want to appear in the surveys by clicking on the boxes...</p>
-
-<%= form_for :adjectives, url: adjectives_path, html: {class: "form-group", id: "new_adjectives"} do |f| %>
+<div class="container">
+  <h1>Admininstration panel</h1>
   
-    <div class="btn-group" data-toggle="buttons">
-    <% i=0%>
-      <% @adjectives.each do |word| %>
-        <% i=i+1%>
-          <label class="btn btn-warning">
-            <%= check_box_tag "answer[toRemove][]", word%>
-            <%= word.capitalize %>
-          </label>
-        <% if i==8 %>
-        </div><br/><div class="btn-group" data-toggle="buttons">
-          <%i=0%>
+  <p>The admin has the power to change the list of words that appear in the surveys.
+    <br>You can select the words that you don't want to appear in the surveys by clicking on the boxes...</p>
+  
+  <%= form_for :adjectives, url: adjectives_path, html: {class: "form-group", id: "new_adjectives"} do |f| %>
+    
+      <div class="btn-group" data-toggle="buttons">
+      <% i=0%>
+        <% @adjectives.each do |word| %>
+          <% i=i+1%>
+            <label class="btn btn-warning">
+              <%= check_box_tag "answer[toRemove][]", word%>
+              <%= word.capitalize %>
+            </label>
+          <% if i==8 %>
+          </div><br/><div class="btn-group" data-toggle="buttons">
+            <%i=0%>
+          <%end%>
         <%end%>
-      <%end%>
-  </div>
-<p>...and add new words by typing them below.</p>
+    </div>
+  <p>...and add new words by typing them below.</p>
+    
+    <p><%= text_field_tag "answer[toAdd][]", nil, placeholder: "add as many words as you want! (separated by comma)", size: 55%></p>
+    
+    <%= f.submit "Submit Changes!", class: "btn btn-success" %>
   
-  <p><%= text_field_tag "answer[toAdd][]", nil, placeholder: "add as many words as you want! (separated by comma)", size: 55%></p>
-  
-  <%= f.submit "Submit Changes!", class: "btn btn-success" %>
-
-<% end %>
+  <% end %>
+</div>
