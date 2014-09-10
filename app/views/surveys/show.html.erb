@@ -31,7 +31,7 @@
     <div class="tab-pane" id="administration">
       <h3>Invitation</h3>
       <p>Invite your friends to answer your survey, by sharing this link:<br/>
-      <%= link_to "#{request.base_url}#{new_survey_response_path}", new_survey_response_path%>
+      <%= link_to new_survey_response_url, new_survey_response_url %>
       </p>
       <p>You can also use this form to send an invitation. Just type in the addresses you want your survey to be sent</br>
       <%= form_tag({controller: "surveys", action: "send_survey_invitations"}, method: "post", class: "form-group") do %>
@@ -44,6 +44,7 @@
         <%= submit_tag ("Invite!"), class: "btn btn-success"%>
       <%end%>
       </p>
+      <hr>
       <h3>Delete this survey</h3>
       <i>Just keep in mind that deleting a survey is non-reversible</i></br>
       <%= link_to 'Delete!', surveys_path + "/" + @survey.uuid.to_s, method: :delete, data: { confirm: 'Are you sure you want to delete this survey? This action is not reversible' }, class: "btn btn-danger" %>
