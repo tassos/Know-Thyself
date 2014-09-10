@@ -67,7 +67,7 @@ class SurveysController < ApplicationController
       flash[:alert]="No e-mails were provided for the invitation"
     else
       params[:invitations].split(',').each do |address|
-        InvitationMailer.invitation(address,params[:survey_uuid],cc).deliver
+        InvitationMailer.invitation(address,params[:survey_uuid],cc,current_user).deliver
       end
       flash[:notice]="E-mails were sent!"
     end
