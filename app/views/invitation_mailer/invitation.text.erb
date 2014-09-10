@@ -1,9 +1,12 @@
-Welcome to example.com, 
-===============================================
+Get to know yourself with KnowThySelf application, 
+==================================================
  
-You have successfully signed up to example.com,
-your username is: .
- 
-To login to the site, just follow this link: .
- 
-Thanks for joining and have a great day!
+Dear friend,
+  
+I recently found about the <%= link_to 'KnowThyself', root_url %> application, which is a very fun way to learn more about yourself. You create a survey filling in some adjectives that you think they describe you, and then you ask your friends to fill in adjectives based on their opinions.
+  
+Will you help me learn more about myself by filling in this survey that I created? It's anonymous and very easy
+  
+<%= link_to 'Survey', new_survey_response_url(@survey) %>
+
+Thank you for helping me get to know myself better. Remember, you can create your own surveys and learn more about yourself too! Just create a <%= link_to 'free account', root_url %> and get started!
