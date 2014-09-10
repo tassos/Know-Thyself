@@ -56,6 +56,18 @@ class SurveysController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def send_survey_invitations
+    if params[:self]
+      cc = current_user.email
+    else
+      cc = nil
+    end
+    params[:invitations].split(',').each do |address|
+      InvitationMailer.invitation(address,params[:survey_uuid],cc).deliver
+    end
+    redirect_to survey_path(params[:survey_uuid])
+  end
   
   def destroy
     @survey.destroy

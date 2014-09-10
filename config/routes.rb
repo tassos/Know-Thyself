@@ -24,6 +24,8 @@ Johari::Application.routes.draw do
   resources :admins
   resources :addresses, only: [:create, :index]
 
+  post 'surveys/invite' => 'surveys#send_survey_invitations', as: :send_survey_invitations
+
   # Example resource route with options:
   #   resources :products do
   #     member do
