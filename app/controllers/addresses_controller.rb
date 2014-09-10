@@ -7,6 +7,7 @@ class AddressesController < ApplicationController
       if @address.valid?
         @address.save
         flash[:notice]="Thank you for subscribing to the newsletter!"
+        NewsletterMailer.subscribe(@address.email).deliver
       else
         flash[:warning]="You are already subscribed to the newsletter."
       end
@@ -17,6 +18,7 @@ class AddressesController < ApplicationController
       else
         @address.destroy
         flash[:notice]="You are now unsubscribed from the newsletter."
+        NewsletterMailer.unsubscribe(@address.email).deliver
       end
     end
      
