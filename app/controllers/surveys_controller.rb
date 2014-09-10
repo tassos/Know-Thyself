@@ -63,8 +63,13 @@ class SurveysController < ApplicationController
     else
       cc = nil
     end
-    params[:invitations].split(',').each do |address|
-      InvitationMailer.invitation(address,params[:survey_uuid],cc).deliver
+    if params[:invitations].empty?
+      flash[:alert]="No e-mails were provided for the invitation"
+    else
+      params[:invitations].split(',').each do |address|
+        InvitationMailer.invitation(address,params[:survey_uuid],cc).deliver
+      end
+      flash[:notice]="E-mails were sent!"
     end
     redirect_to survey_path(params[:survey_uuid])
   end
