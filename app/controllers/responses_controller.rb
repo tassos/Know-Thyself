@@ -2,7 +2,7 @@ class ResponsesController < ApplicationController
   def new
     @survey = Survey.find_by_uuid(params[:id])
     @response = Response.new
-    @adjectives = Adjective.where(visibility:1).order(:word).sample(64)
+    @adjectives = Adjective.where(visibility:1).shuffle
   end
   def create
     if (params[:response][:Adjectives].nil? && params[:response][:newAdjectives].nil?) || !params[:response][:loa].in?(['1','2','3'])

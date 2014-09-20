@@ -13,6 +13,8 @@
     <div class="col-md-9">
       <%= form_for @response, url: responses_path, html: {class: "form-group", id: "new_response"} do |f| %>
       
+        <div id="profile-description">
+          <div class="text show-more-height">
             <div class="btn-group" data-toggle="buttons">
               <% i=0%>
               <% @adjectives.each do |adj| %>
@@ -27,6 +29,9 @@
                 <%end%>
               <%end%>
             </div>
+          </div>
+          <div class="show-more">Show more adjectives...</div>
+        </div>
       
           <p><%= text_field_tag "response[newAdjectives][]", nil, placeholder: "or add other words if you want! (separated by comma)", size: 55%></p>
           <p>

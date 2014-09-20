@@ -1,0 +1,13 @@
+#profile-description {
+    margin-top: 10px; margin-bottom: 20px; position:relative;
+}
+#profile-description .text {
+    margin-bottom: 5px; color: #fff; padding: 0 15px; position:relative; font-family: Arial; font-size: 14px; display: block;
+}
+#profile-description .show-more {
+    width: 690px; color: #777; position:relative; font-size: 12px; padding-top: 15px; height: 50px; text-align: left; background: #fff; cursor: pointer;
+}
+#profile-description .show-more:hover { 
+    color: #1779dd;
+}
+#profile-description .show-more-height { height: 262px; overflow:hidden; }
