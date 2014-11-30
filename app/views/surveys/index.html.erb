@@ -21,5 +21,7 @@
   <%end%>
 </table>
 
-<p><%= button_to 'Create new survey', new_survey_path, class: 'btn btn-success', method: :get %></p>
+<% if user_signed_in? %>
+  <p><%= button_to 'Create new survey', new_survey_path, class: 'btn btn-success', method: :get %></p>
+<%end%>
 </div>

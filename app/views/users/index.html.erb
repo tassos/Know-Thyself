@@ -6,7 +6,7 @@
       <%if !user.name.nil?%>
         <% i=i+1%>
         <tr>
-          <td><%=i%>.</td><td><%= link_to user.name, edit_user_registration_path %></td>
+          <td><%=i%>.</td><td><%= link_to user.name, user_surveys_path(user) %></td>
         </tr>
       <%end%>
     <%end%>

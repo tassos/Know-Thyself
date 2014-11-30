@@ -21,7 +21,7 @@ Johari::Application.routes.draw do
   get 'surveys/:id/responses/new' => 'responses#new', as: :new_survey_response
   resources :responses
   resources :surveys
-  resources :admins
+  get 'users/:id/surveys' => 'surveys#index', as: :user_surveys
   resources :addresses, only: [:create, :index]
 
   post 'surveys/invite' => 'surveys#send_survey_invitations', as: :send_survey_invitations

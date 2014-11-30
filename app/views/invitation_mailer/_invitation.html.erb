@@ -13,6 +13,8 @@
     </p>
     <p>Thank you for helping me get to know myself better. Remember, you can create your own surveys and learn more about yourself too! Just create a <%= link_to 'free account', root_url %> and get started!</p>
 
-    <%= current_user.name %>
+    <% if user_signed_in? %>
+      <%= current_user.name %>
+    <%end%>
   </body>
 </html>

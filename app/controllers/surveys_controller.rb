@@ -1,5 +1,5 @@
 class SurveysController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user_or_admin!
   before_filter :user_owns_survey?, :only => [:show, :destroy]
   def new
     @survey = Survey.new
@@ -38,7 +38,12 @@ class SurveysController < ApplicationController
     end
   end
   def index
-    @surveys=current_user.surveys
+    if admin_signed_in?
+      user_in_question=User.find(params[:id])
+    elsif user_signed_in?
+      user_in_question=current_user
+    end
+    @surveys = user_in_question.surveys
   end
   def show
     if user_owns_survey?
@@ -81,7 +86,16 @@ class SurveysController < ApplicationController
   
   private
   def user_owns_survey?
-    @survey = Survey.find_by_uuid(params[:id])
-    @survey.user_id == current_user.id
+    if admin_signed_in?
+      return true
+    else
+      @survey = Survey.find_by_uuid(params[:id])
+      @survey.user_id == current_user.id
+    end
+  end
+  def authenticate_user_or_admin!
+    unless user_signed_in? or admin_signed_in?
+      redirect_to root_url , :flash => {:alert => "You need to sign in as admin/user before continuing..".html_safe }
+    end
   end
 end
