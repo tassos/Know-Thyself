@@ -35,7 +35,7 @@
       
           <p><%= text_field_tag "response[newAdjectives][]", nil, placeholder: "or add other words if you want! (separated by comma)", size: 55%></p>
           <p>
-            <%= f.label :loa, "You know " + @survey.user.name.capitalize %>
+            <%= f.label :loa, "You know " + @survey.user.name.titleize %>
             <%= f.select :loa, options_for_select([[nil, nil], ['a little bit', 3], ['somehow', 2], ['very good', 1]]),{default: nil} %>
           </p>
         </div>
