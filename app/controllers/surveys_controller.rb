@@ -29,7 +29,7 @@ class SurveysController < ApplicationController
         @survey = Survey.new(user_id: current_user.id, name: params[:survey][:name], uuid: SecureRandom.hex(n=8))
         @survey.save
     
-        @response = Response.new(survey_id: @survey.id, loa: '4', adjective_ids: ids, uuid: SecureRandom.hex(n=5))
+        @response = Response.new(survey_id: @survey.id, loa: '4', adjective_ids: ids.uniq, uuid: SecureRandom.hex(n=5))
         @response.save
         
         flash[:notice]="Survey created successfully!"
