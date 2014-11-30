@@ -33,7 +33,7 @@
           <div class="show-more">Show more adjectives...</div>
         </div>
       
-          <p><%= text_field_tag "response[newAdjectives][]", nil, placeholder: "or add other words if you want! (separated by comma)", size: 55%></p>
+          <p><%= text_field_tag "response[newAdjectives][]", nil, placeholder: "or add other words if you want! (separated by comma)", size: 55%><span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip", data-placement="right", title="Separate words with a comma! e.g. Crazy, Energetic, Brave"></span></p>
           <p>
             <%= f.label :loa, "You know " + @survey.user.name.titleize %>
             <%= f.select :loa, options_for_select([[nil, nil], ['a little bit', 3], ['somehow', 2], ['very good', 1]]),{default: nil} %>
