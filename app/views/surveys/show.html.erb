@@ -31,7 +31,7 @@
     <div class="tab-pane" id="administration">
       <h3>Invitation</h3>
       <p>Invite your friends to answer your survey, by sharing this link:<br/>
-      <%= link_to new_survey_response_url, new_survey_response_url %>
+      <%= link_to new_survey_response_url, new_survey_response_url, data: { no_turbolink: true } %>
       </p>
       <p>You can also use this form to send an invitation. Just type in the addresses you want your survey to be sent</br>
       <%= form_tag({controller: "surveys", action: "send_survey_invitations"}, method: "post", class: "form-group") do %>
