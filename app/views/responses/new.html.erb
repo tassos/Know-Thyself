@@ -33,34 +33,17 @@
           <div class="show-more">Show more adjectives...</div>
         </div>
       
-          <p><%= text_field_tag "response[newAdjectives][]", nil, placeholder: "or add other words if you want! (separated by comma)", size: 55%><span class="glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip", data-placement="right", title="Separate words with a comma! e.g. Crazy, Energetic, Brave"></span></p>
+          <p><%= text_field_tag "response[newAdjectives][]", nil, placeholder: "or add other words if you want! (separated by comma)", size: 55%><span class="text-info glyphicon glyphicon-question-sign", aria-hidden="true" data-toggle="tooltip", data-placement="right", title="Separate words with a comma! e.g. Crazy, Energetic, Brave"></span></p>
           <p>
             <%= f.label :loa, "You know " + @survey.user.name.titleize %>
-            <%= f.select :loa, options_for_select([[nil, nil], ['a little bit', 3], ['somehow', 2], ['very good', 1]]),{default: nil} %>
+            <%= f.select :loa, options_for_select([['a little bit', 3], ['somehow', 2], ['very good', 1]]),{default: nil}, required: 'required' %>
           </p>
         </div>
       </div>
       <p>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Submitting a response</button>
+        <%= f.hidden_field :survey_id, value: @survey.id%>
+        <%= f.hidden_field :survey_uuid, value: @survey.uuid%>
+        <%= f.submit "Submit!", class: "btn btn-success" %>
       </p>
-  
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-            <div class="modal-body">
-              <h1>Are you sure you want to submit the response?</h1>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Go back</button>
-              <%= f.hidden_field :survey_id, value: @survey.id%>
-              <%= f.hidden_field :survey_uuid, value: @survey.uuid%>
-              <%= f.submit "Submit!", class: "btn btn-success" %>
-            </div>
-          </div>
-        </div>
-      </div>
     <% end %>
 </div>
