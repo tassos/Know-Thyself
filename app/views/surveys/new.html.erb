@@ -15,20 +15,26 @@
       
       <%= u.fields_for :respose do |f|%>
       
-        <div class="btn-group" data-toggle="buttons">
-          <% i=0%>
-          <% @adjectives.each do |adj| %>
-            <% i=i+1%>
-              <label class="btn btn-info">
-                <%= check_box_tag "response[Adjectives][]", adj.id%>
-                <%= adj.word.capitalize %>
-              </label>
-            <% if i==8 %>
-            </div><br/><div class="btn-group" data-toggle="buttons">
-              <%i=0%>
+      <div id="profile-description">
+        <div class="text show-more-height">
+          <div class="btn-group" data-toggle="buttons">
+            <% i=0%>
+            <% @adjectives.each do |adj| %>
+              <% i=i+1%>
+                <label class="btn btn-info">
+                  <%= check_box_tag "response[Adjectives][]", adj.id%>
+                  <%= adj.word.capitalize %>
+                </label>
+              <% if i==8 %>
+              </div><br/><div class="btn-group" data-toggle="buttons">
+                <%i=0%>
+              <%end%>
             <%end%>
-          <%end%>
+          </div>
         </div>
+        <div class="show-more">Show more adjectives...</div>
+      </div>
+
         <p>...and add new words by typing them below.</p>
         <p><%= text_field_tag "response[newAdjectives][]", nil, placeholder: "add as many words as you want! (separated by comma)", size: 55%><span class="text-info glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip", data-placement="right", title="Separate words with a comma! e.g. Crazy, Energetic, Brave"></span></p>
       <%end%>
