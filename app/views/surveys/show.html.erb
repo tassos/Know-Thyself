@@ -64,9 +64,15 @@
           </div>
         </div>
       <%end%>
-      </p>
+    </p>
+    <hr>
+    <h3>Social media</h3>
+      <p>You enjoyed using Know ThySelf and leadning about yourself? Then share it with your friends on facebook 
+<a href="#" onClick="MyWindow=window.open('http://www.facebook.com/sharer.php?u=http://knowthyself.herokuapp.com','MyWindow','toolbar=no,location=no,directories=no,status=no, menubar=no,scrollbars=no,resizable=no,width=600,height=300'); return false;"><img src="/facebook500.png" height="30"></a> or your followers on twitter
+<a href="#" onClick="MyWindow=window.open('http://twitter.com/share?text=Get%20to%20know%20better%20yourself&url=http://knowthyself.herokuapp.com','MyWindow','toolbar=no,location=no,directories=no,status=no, menubar=no,scrollbars=no,resizable=no,width=600,height=300'); return false;"><img src="/twitter.png" height="30"></a>
+
       <hr>
-      <h3>Delete this survey</h3>
+    <h3>Delete this survey</h3>
       <i>Just keep in mind that deleting a survey is non-reversible</i></br>
       <%= link_to 'Delete!', surveys_path + "/" + @survey.uuid.to_s, method: :delete, data: { confirm: 'Are you sure you want to delete this survey? This action is not reversible' }, class: "btn btn-danger" %>
     </div>
