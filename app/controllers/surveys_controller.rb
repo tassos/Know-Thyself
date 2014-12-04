@@ -55,7 +55,7 @@ class SurveysController < ApplicationController
           words << k.word
         end
       end
-      @words = words.uniq
+      @words = Hash[words.group_by {|x| x}.map {|k,v| [k,v.count]}]
     else
       flash[:alert]="You are not the owner of this survey"
       redirect_to root_path

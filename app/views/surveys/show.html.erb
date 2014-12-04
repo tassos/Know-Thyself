@@ -14,18 +14,27 @@
       <%end%></p>
       <h3>Adjectives that appear in responses</h3>
       
-      <p><% @words.each do |t| %>
-          <%= t %>
-      <%end%></p>
+      <% unless @words.empty? %>
+        <table>
+          <tr><th>Adjective</th><th>Count</th></tr>
+          <p><% @words.each do |t| %>
+            <tr>
+              <td><%= t[0] %></td><td><%= t[1] %></td>
+            </tr>
+          <%end%></p>
+        </table>
+        <h3>Individual responses</h3>
+        <p>
+          <ol>
+            <% @survey.responses.find(:all, :conditions => "loa != 4").each do |r|%>
+              <li><%= link_to "Response", "/responses/#{r.uuid}" %></li>
+            <%end%>
+          </ol>
+        </p>
+      <% else %>
+        There are no responses to your survey yet. Did you <a data-target="#administration" data-toggle="tab">share</a> your survey?
+      <%end%>
       
-      <h3>Individual responses</h3>
-      <p>
-        <ol>
-          <% @survey.responses.find(:all, :conditions => "loa != 4").each do |r|%>
-            <li><%= link_to "Response", "/responses/#{r.uuid}" %></li>
-          <%end%>
-        </ol>
-      </p>  
     </div>  
     
     <div class="tab-pane" id="administration">
