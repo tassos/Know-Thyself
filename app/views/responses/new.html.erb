@@ -16,17 +16,11 @@
         <div id="profile-description">
           <div class="text show-more-height">
             <div class="btn-group" data-toggle="buttons">
-              <% i=0%>
               <% @adjectives.each do |adj| %>
-                <% i=i+1%>
-                  <label class="btn btn-info">
-                    <%= check_box_tag "response[Adjectives][]", adj.id.to_i%>
-                    <%= adj.word.capitalize %>
-                  </label>
-                <% if i==8 %>
-                </div><br/><div class="btn-group" data-toggle="buttons">
-                  <%i=0%>
-                <%end%>
+                <label class="btn btn-info">
+                  <%= check_box_tag "response[Adjectives][]", adj.id.to_i%>
+                  <%= adj.word.capitalize %>
+                </label>
               <%end%>
             </div>
           </div>

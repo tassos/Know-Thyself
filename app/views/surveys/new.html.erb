@@ -1,43 +1,42 @@
 <div class="container">
   <h2>Share opinion about yourself</h2>
   
-  <blockquote>Before you send out a survey to your acquaintances, you need to first type a description for your survey. This will later on
-    be used to identify what kind of survey it is. The description should be short (e.g. 'for friends', 'for colleagues' etc).
-    Afterwards, you need to select adjectives that describe youself. You can do that by simply clicking on the words.
-    Once you are done, click on 'Review Answer'.</blockquote>
+  <div class="row">
+    <div class="col-md-9">
+      <blockquote>Before you send out a survey to your acquaintances, you need to first type a description for your survey. This will later on be used to identify what kind of survey it is. The description should be short (e.g. 'for friends', 'for colleagues' etc). Afterwards, you need to select adjectives that describe youself. You can do that by simply clicking on the words. Once you are done, click on 'Review Answer'.</blockquote>
+    </div>
+  </div>
   
-    <%= form_for @survey, url: surveys_path, html: {class: "form-group", id: "new_response"} do |u| %>
-    
-      <p>Give a description for your survey</p>
-        <%= u.text_field :name, required: 'required' %>
-       
-      <p>Select any adjectives that you believe describe you...</p>
+  <div class="row">
+    <div class="col-md-9">  
+      <%= form_for @survey, url: surveys_path, html: {class: "form-group", id: "new_response"} do |u| %>
       
-      <%= u.fields_for :respose do |f|%>
-      
-        <div id="profile-description">
-          <div class="text show-more-height">
-            <div class="btn-group" data-toggle="buttons">
-              <% i=0%>
-              <% @adjectives.each do |adj| %>
-                <% i=i+1%>
+        <p>Give a description for your survey</p>
+          <%= u.text_field :name, required: 'required' %>
+         
+        <p>Select any adjectives that you believe describe you...</p>
+        
+        <%= u.fields_for :respose do |f|%>
+        
+          <div id="profile-description">
+            <div class="text show-more-height">
+              <div class="btn-group" data-toggle="buttons">
+                <% @adjectives.each do |adj| %>
                   <label class="btn btn-info">
                     <%= check_box_tag "response[Adjectives][]", adj.id%>
                     <%= adj.word.capitalize %>
                   </label>
-                <% if i==8 %>
-                </div><br/><div class="btn-group" data-toggle="buttons">
-                  <%i=0%>
                 <%end%>
-              <%end%>
+              </div>
             </div>
+            <div class="show-more">Show more adjectives...</div>
           </div>
-          <div class="show-more">Show more adjectives...</div>
-        </div>
 
-        <p>...and add new words by typing them below.</p>
-        <p><%= text_field_tag "response[newAdjectives][]", nil, placeholder: "add as many words as you want! (separated by comma)", size: 55%><span class="text-info glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip", data-placement="right", title="Separate words with a comma! e.g. Crazy, Energetic, Brave"></span></p>
-      <%end%>
-      <p><%= u.submit "Submit!", class: "btn btn-success" %></p>
-    <% end %>
+          <p>...and add new words by typing them below.</p>
+          <p><%= text_field_tag "response[newAdjectives][]", nil, placeholder: "add as many words as you want! (separated by comma)", size: 55%><span class="text-info glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip", data-placement="right", title="Separate words with a comma! e.g. Crazy, Energetic, Brave"></span></p>
+        <%end%>
+        <p><%= u.submit "Submit!", class: "btn btn-success" %></p>
+      <% end %>
+    </div>
+  </div>
 </div>
