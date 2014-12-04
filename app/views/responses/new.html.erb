@@ -29,8 +29,8 @@
       
           <p><%= text_field_tag "response[newAdjectives][]", nil, placeholder: "or add other words if you want! (separated by comma)", size: 55%><span class="text-info glyphicon glyphicon-question-sign", aria-hidden="true" data-toggle="tooltip", data-placement="right", title="Separate words with a comma! e.g. Crazy, Energetic, Brave"></span></p>
           <p>
-            <%= f.label :loa, "You know " + @survey.user.name.titleize %>
-            <%= f.select :loa, options_for_select([['a little bit', 3], ['somehow', 2], ['very good', 1]]),{default: nil}, required: 'required' %>
+            <%= f.label :loa, @survey.user.name.titleize + " is a(n)" %>
+            <%= f.select :loa, options_for_select([['acquaintance', 3], ['friend/colleague', 2], ['good friend', 1], ['very close friend',0]]),{default: nil}, required: 'required' %>
           </p>
         </div>
       </div>

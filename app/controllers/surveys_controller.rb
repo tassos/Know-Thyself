@@ -7,12 +7,8 @@ class SurveysController < ApplicationController
     @adjectives = Adjective.where(visibility:1).shuffle
   end
   def create
-    if params[:response].nil? || params[:survey][:name].empty?
-      if params[:response].nil?
-        flash[:alert]="Please select some adjectives that describe you!"
-      else
-        flash[:alert]="Please enter a description for your survey!"
-      end
+    if params[:response].empty?
+      flash[:alert]="Please select some adjectives that describe you!"
       respond_to do |format|
         format.html { redirect_to new_survey_path }
       end
@@ -29,7 +25,7 @@ class SurveysController < ApplicationController
         @survey = Survey.new(user_id: current_user.id, name: params[:survey][:name], uuid: SecureRandom.hex(n=8))
         @survey.save
     
-        @response = Response.new(survey_id: @survey.id, loa: '4', adjective_ids: ids.uniq, uuid: SecureRandom.hex(n=5))
+        @response = Response.new(survey_id: @survey.id, loa: 4, adjective_ids: ids.uniq, uuid: SecureRandom.hex(n=5))
         @response.save
         
         flash[:notice]="Survey created successfully!"

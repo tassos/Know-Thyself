@@ -5,12 +5,8 @@ class ResponsesController < ApplicationController
     @adjectives = Adjective.where(visibility:1).shuffle
   end
   def create
-    if (params[:response][:Adjectives].nil? && params[:response][:newAdjectives].nil?) || !params[:response][:loa].in?(['1','2','3'])
-      if params[:response][:Adjectives].nil? && params[:response][:newAdjectives].nil?
-        flash[:alert]="Please select some adjectives that describe your friend!"
-      else
-        flash[:alert]="Please select how well you know each other!"
-      end
+    if (params[:response][:Adjectives].nil? && params[:response][:newAdjectives].nil?)
+      flash[:alert]="Please select some adjectives that describe your friend!"
       respond_to do |format|
         format.html { redirect_to new_survey_response_path(params[:response][:survey_uuid])}
       end
@@ -32,6 +28,6 @@ class ResponsesController < ApplicationController
   end
   def show
     @response = Response.find_by_uuid(params[:id])
-    @map = ["","very good","somehow","a little bit"];
+    @map = ["very close friend","good friend","friend/colleague","acquaintance"];
   end
 end
