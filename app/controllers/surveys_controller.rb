@@ -7,7 +7,7 @@ class SurveysController < ApplicationController
     @adjectives = Adjective.where(visibility:1).shuffle
   end
   def create
-    if params[:response].empty?
+    if (params[:response][:Adjectives].nil? && params[:response][:newAdjectives] == [""])
       flash[:alert]="Please select some adjectives that describe you!"
       respond_to do |format|
         format.html { redirect_to new_survey_path }
