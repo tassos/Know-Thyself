@@ -18,52 +18,60 @@
 <div class="container">
   <h1><%= @survey.name %></h1>
   
-  <ul class="nav nav-tabs" id="myTab">
-    <li class="active"><a data-target="#results" data-toggle="tab">Results</a></li>
-    <li><a data-target="#administration" data-toggle="tab">Administration</a></li>
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#wordcloud" aria-controls="wordcloud" role="tab" data-toggle="tab">Word Cloud</a></li>
+    <li role="presentation"><a href="#results" aria-controls="results" role="tab" data-toggle="tab">Detailed results</a></li>
+    <li role="presentation"><a href="#administration" aria-controls="administration" role="tab" data-toggle="tab">Administration</a></li>
   </ul>
   
   <div class="tab-content">
-    <div class="tab-pane active" id="results">
-      <h3>Adjectives you have selected</h3>
-      <% @survey.responses.find(:first, :conditions => "loa = 4").adjectives.each do |t| %>
-        <%= t.word %>
-      <%end%></p>
-      <h3>Adjectives that appear in responses</h3>
-      
-      <% unless @words.empty? %>
-        <table>
-          <tr><th>Adjective</th><th>Count</th></tr>
-          <p><% @words.each do |adjective,count| %>
-            <tr>
-              <td><%= adjective %></td><td><%= count %></td>
-            </tr>
-          <%end%></p>
-        </table>
-        <hr>
-          Word cloud of the responses <small>(thanks to <a href="https://github.com/lucaong/jQCloud" target="_blank">jQCloud</a>)</small>
-          <div id="example" style="width: 550px; height: 350px;"></div>
-        <hr>
-        <h3>Individual responses</h3>
-        <p>
-          <ol>
-            <% @survey.responses.find(:all, :conditions => "loa != 4").each do |r|%>
-              <li><%= link_to "Response", "/responses/#{r.uuid}" %></li>
-            <%end%>
-          </ol>
-        </p>
-      <% else %>
-        There are no responses to your survey yet. Did you <a data-target="#administration" data-toggle="tab">share</a> your survey?
+    <div role="tabpanel" class="tab-pane active" id="wordcloud">
+      <%if @words.empty? %>
+        <center><h3>You haven't received any responses yet. Have you <a href="#administration" data-toggle="tab">shared</a> your survey already?
+      <%else%>
+        <center><div id="example" style="width: 550px; height: 350px;"></div></center>
+        <br>
+        <i>The more frequent an adjective appears in the responses, the bigger it appears in the word cloud <small>(thanks to <a href="https://github.com/lucaong/jQCloud" target="_blank">jQCloud</a>)</small></i>
       <%end%>
-      
-    </div>  
+    </div>
+    <div role="tabpanel" class="tab-pane" id="results">
+      <div class="row">
+        <div class="col-md-4">
+          <h3>Adjectives you selected</h3>
+          <% @survey.responses.find(:first, :conditions => "loa = 4").adjectives.each do |t| %>
+            <%= t.word %>
+          <%end%>
+        </div>
+        <div class="col-md-4">
+          <h3>Adjectives in responses</h3>
+          <table>
+            <tr><th>Adjective</th><th>Count</th></tr>
+            <p><% @words.each do |adjective,count| %>
+              <tr>
+                <td><%= adjective %></td><td><%= count %></td>
+              </tr>
+            <%end%></p>
+          </table>
+        </div>
+        <div class="col-md-4">
+          <h3>Individual responses</h3>
+          <p>
+            <ol>
+              <% @survey.responses.find(:all, :conditions => "loa != 4").each do |r|%>
+                <li><%= link_to "Response", "/responses/#{r.uuid}" %></li>
+              <%end%>
+            </ol>
+          </p>
+        </div>
+      </div>
+    </div>
     
     <div class="tab-pane" id="administration">
       <h3>Invitation</h3>
       <p>Invite your friends to answer your survey, by sharing this link:<br/>
       <%= link_to new_survey_response_url, new_survey_response_url, data: { no_turbolink: true } %>
       </p>
-      <p>You can also use this form to send an invitation. Just type in the addresses you want your survey to be sent</br>
+      <p>You can also use this form to send an invitation. Just type in the addresses you want your survey to be sent<br></p>
       <%= form_tag({controller: "surveys", action: "send_survey_invitations"}, method: "post", class: "form-group") do %>
         <%= text_area_tag('invitations', nil, placeholder: "...add as many addresses as you want (seperated by comma)", class: "form-control", rows: '3') %>
         <%= hidden_field_tag(:survey_uuid, @survey.uuid)%>
@@ -94,16 +102,15 @@
           </div>
         </div>
       <%end%>
-    </p>
-    <hr>
-    <h3>Social media</h3>
+      <hr>
+      <h3>Social media</h3>
       <p>You enjoyed using Know ThySelf and leadning about yourself? Then share it with your friends on facebook 
 <a href="#" onClick="MyWindow=window.open('http://www.facebook.com/sharer.php?u=http://knowthyself.herokuapp.com','MyWindow','toolbar=no,location=no,directories=no,status=no, menubar=no,scrollbars=no,resizable=no,width=600,height=300'); return false;"><img src="/facebook500.png" height="30"></a> or your followers on twitter
 <a href="#" onClick="MyWindow=window.open('http://twitter.com/share?text=Get%20to%20know%20better%20yourself&url=http://knowthyself.herokuapp.com','MyWindow','toolbar=no,location=no,directories=no,status=no, menubar=no,scrollbars=no,resizable=no,width=600,height=300'); return false;"><img src="/twitter.png" height="30"></a>
 
       <hr>
-    <h3>Delete this survey</h3>
-      <i>Just keep in mind that deleting a survey is non-reversible</i></br>
+      <h3>Delete this survey</h3>
+      <i>Just keep in mind that deleting a survey is non-reversible</i><br>
       <%= link_to 'Delete!', surveys_path + "/" + @survey.uuid.to_s, method: :delete, data: { confirm: 'Are you sure you want to delete this survey? This action is not reversible' }, class: "btn btn-danger" %>
     </div>
   </div>
