@@ -1,3 +1,20 @@
+<script type="text/javascript">
+  /*!
+   * Create an array of word objects, each representing a word in the cloud
+   * Thanks to jQCloud https://github.com/lucaong/jQCloud
+   */
+  var word_array = [
+      <% @words.each do |text,weight| %>
+        {text: '<%= text %>', weight: <%= weight %>},
+      <% end %>
+  ];
+
+  $(function() {
+    // When DOM is ready, select the container element and call the jQCloud method, passing the array of words as the first argument.
+    $("#example").jQCloud(word_array);
+  });
+</script>
+
 <div class="container">
   <h1><%= @survey.name %></h1>
   
@@ -17,12 +34,16 @@
       <% unless @words.empty? %>
         <table>
           <tr><th>Adjective</th><th>Count</th></tr>
-          <p><% @words.each do |t| %>
+          <p><% @words.each do |adjective,count| %>
             <tr>
-              <td><%= t[0] %></td><td><%= t[1] %></td>
+              <td><%= adjective %></td><td><%= count %></td>
             </tr>
           <%end%></p>
         </table>
+        <hr>
+          Word cloud of the responses <small>(thanks to <a href="https://github.com/lucaong/jQCloud" target="_blank">jQCloud</a>)</small>
+          <div id="example" style="width: 550px; height: 350px;"></div>
+        <hr>
         <h3>Individual responses</h3>
         <p>
           <ol>

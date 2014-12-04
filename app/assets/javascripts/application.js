@@ -16,3 +16,4 @@
 //= require bootstrap
 //= require show-more
 //= require_tree .
+//= require jqcloud

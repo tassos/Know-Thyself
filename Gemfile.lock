@@ -59,6 +59,8 @@ GEM
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
+    jqcloud-rails (1.0.0)
+      jquery-rails
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -150,6 +152,7 @@ DEPENDENCIES
   devise
   figaro
   jbuilder (~> 1.2)
+  jqcloud-rails
   jquery-rails
   pg
   rails (= 4.0.1)

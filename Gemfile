@@ -61,3 +61,6 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# Use jqcloud for generating word clouds
+gem 'jqcloud-rails'
