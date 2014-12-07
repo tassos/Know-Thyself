@@ -17,9 +17,20 @@
 
 <div class="container">
   <h1><%= @survey.name %></h1>
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <em>Adjectives you selected:</em>
+      <% @self_response.adjectives.each do |t| %>
+        <%= t.word %>
+      <%end%>
+    </div>
+  </div>
+  <hr>
   
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#wordcloud" aria-controls="wordcloud" role="tab" data-toggle="tab">Word Cloud</a></li>
+    <li role="presentation"><a href="#window" aria-controls="window" role="tab" data-toggle="tab">Window</a></li>
     <li role="presentation"><a href="#results" aria-controls="results" role="tab" data-toggle="tab">Detailed results</a></li>
     <li role="presentation"><a href="#administration" aria-controls="administration" role="tab" data-toggle="tab">Administration</a></li>
   </ul>
@@ -34,14 +45,25 @@
         <i>The more frequent an adjective appears in the responses, the bigger it appears in the word cloud <small>(thanks to <a href="https://github.com/lucaong/jQCloud" target="_blank">jQCloud</a>)</small></i>
       <%end%>
     </div>
+    <div role="tabpanel" class="tab-pane" id="window">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <tr>
+            <th></th><th>Known to you</th><th>Not known to you</th>
+          </tr><tr>
+            <th style="writing-mode: tb-rl;">Known to others</th>
+            <td class="success"><% @to_both.each do |i| %><%= i %> <%end%></td>
+            <td class="danger"><% @to_you.each do |i| %><%= i %> <%end%></td>
+          </tr><tr>
+            <th style="writing-mode: tb-rl;">Not known to others</th>
+            <td class="warning"><% @to_them.each do |i| %><%= i %> <%end%></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+    </div>
     <div role="tabpanel" class="tab-pane" id="results">
       <div class="row">
-        <div class="col-md-4">
-          <h3>Adjectives you selected</h3>
-          <% @survey.responses.find(:first, :conditions => "loa = 4").adjectives.each do |t| %>
-            <%= t.word %>
-          <%end%>
-        </div>
         <div class="col-md-4">
           <h3>Adjectives in responses</h3>
           <table>

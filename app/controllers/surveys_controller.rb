@@ -44,14 +44,26 @@ class SurveysController < ApplicationController
   def show
     if user_owns_survey?
       words = []
+      self_words = []
       @survey = Survey.find_by_uuid(params[:id])
-      @responses = Response.find(:all, :conditions => ["loa != 4 AND survey_id = ? ",@survey.id])
+      @responses = @survey.responses.find(:all, :conditions => "loa != 4")
+      @self_response = @survey.responses.find(:first, :conditions => "loa = 4")
+      @self_response.adjectives.each do |p|
+        self_words << p.word
+      end
       @responses.each do |t|
         t.adjectives.each do |k|
           words << k.word
         end
       end
       @words = Hash[words.group_by {|x| x}.map {|k,v| [k,v.count]}]
+
+      # Finding the words to build the window (words that belong to
+      # both groups and words that belong to one of the two groups)
+      just_words = words.uniq
+      @to_both = just_words & self_words
+      @to_them = self_words - just_words
+      @to_you = just_words - self_words
     else
       flash[:alert]="You are not the owner of this survey"
       redirect_to root_path
