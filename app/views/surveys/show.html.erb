@@ -79,7 +79,7 @@
           <h3>Individual responses</h3>
           <p>
             <ol>
-              <% @survey.responses.find(:all, :conditions => "loa != 4").each do |r|%>
+              <% @responses.each do |r|%>
                 <li><%= link_to "Response", "/responses/#{r.uuid}" %></li>
               <%end%>
             </ol>
