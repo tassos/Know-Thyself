@@ -85,6 +85,10 @@
             </ol>
           </p>
         </div>
+        <div class="col-md-4">
+          <h3>Export results</h3>
+            <%= button_to "Export to CSV", survey_path(id: params[:id],format: "csv"), method: "get", class: "btn btn-success" %>
+        </div>
       </div>
     </div>
     

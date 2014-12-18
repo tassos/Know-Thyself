@@ -64,6 +64,11 @@ class SurveysController < ApplicationController
       @to_both = just_words & self_words
       @to_them = self_words - just_words
       @to_you = just_words - self_words
+
+      respond_to do |format|
+        format.html
+        format.csv
+    end
     else
       flash[:alert]="You are not the owner of this survey"
       redirect_to root_path
@@ -103,7 +108,7 @@ class SurveysController < ApplicationController
   end
   def authenticate_user_or_admin!
     unless user_signed_in? or admin_signed_in?
-      redirect_to root_url , :flash => {:alert => "You need to sign in as admin/user before continuing..".html_safe }
+      redirect_to root_url , :flash => {:alert => "You need to sign in as admin/user before continuing.".html_safe }
     end
   end
 end

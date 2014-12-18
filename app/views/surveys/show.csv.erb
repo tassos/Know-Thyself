@@ -1,0 +1,4 @@
+Time; Level of acquantance; Words; 
+  <% @responses.each do |response| %>
+    <%= response.created_at %>; <%= response.loa %><% response.adjectives.each do |adjective| %>;<%= adjective.word %><% end %>
+  <% end %>
