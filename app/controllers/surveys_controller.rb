@@ -105,8 +105,11 @@ class SurveysController < ApplicationController
     elsif admin_signed_in?
       current_admin
     else
-      @user = User.new(name: params[:username], email: params[:email], password: 'unregistered', registered: false, uuid: SecureRandom.hex(n=4))
-      @user.save!
+      @user = User.find_by_email(params[:email])
+      if @user.nil? || @user.registered
+        @user = User.new(name: params[:username], email: params[:email], password: 'unregistered', registered: false, uuid: SecureRandom.hex(n=4))
+        @user.save!
+      end
       return @user
     end
   end

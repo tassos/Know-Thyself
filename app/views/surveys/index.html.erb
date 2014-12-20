@@ -14,7 +14,7 @@
     </tr>
     <% @surveys.each do |survey| %>
       <tr>
-        <td><%= link_to survey.name, surveys_path + "/" + survey.uuid.to_s%></td>
+        <td><%= link_to survey.name, surveys_path + "/" + survey.adminid.to_s%></td>
         <td><%= survey.responses.count-1%></td>
       </tr>
     <%end%>
