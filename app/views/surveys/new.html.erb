@@ -13,6 +13,14 @@
       
         <p>Give a description for your survey</p>
           <%= u.text_field :name, required: 'required' %>
+        <% if !user_signed_in? %>
+          <%= u.fields_for :non_user do |l|%>
+            <p>Provide an e-mail address</p>
+            <%= l.text_field :email, required: 'required', type: 'email' %>
+            <p>Provide your name</p>
+            <%= l.text_field :username, required: 'required' %>
+          <% end %>
+        <% end %>
          
         <p>Select any adjectives that you believe describe you...</p>
         

@@ -1,5 +1,5 @@
 class SurveysController < ApplicationController
-  before_filter :authenticate_user_or_admin!
+  before_filter :authenticate_user_or_admin!, :only => [:index, :send_survey_invitations]
   before_filter :user_owns_survey?, :only => [:show, :destroy]
   def new
     @survey = Survey.new
@@ -22,14 +22,14 @@ class SurveysController < ApplicationController
         if !params[:response][:Adjectives].nil?
           params[:response][:Adjectives].each {|s| ids << s.to_i}
         end
-        @survey = Survey.new(user_id: current_user.id, name: params[:survey][:name], uuid: SecureRandom.hex(n=8))
+        @survey = Survey.new(user_id: find_user(params[:survey][:non_user]).id, name: params[:survey][:name], uuid: SecureRandom.hex(n=8), adminid: SecureRandom.hex(n=8))
         @survey.save
     
         @response = Response.new(survey_id: @survey.id, loa: 4, adjective_ids: ids.uniq, uuid: SecureRandom.hex(n=5))
         @response.save
         
         flash[:notice]="Survey created successfully!"
-        redirect_to survey_path(@survey.uuid)
+        redirect_to survey_path(@survey.adminid)
       end
     end
   end
@@ -45,7 +45,7 @@ class SurveysController < ApplicationController
     if user_owns_survey?
       words = []
       self_words = []
-      @survey = Survey.find_by_uuid(params[:id])
+      @survey = Survey.find_by_adminid(params[:id])
       @responses = @survey.responses.find(:all, :conditions => "loa != 4")
       @self_response = @survey.responses.find(:first, :conditions => "loa = 4")
       @self_response.adjectives.each do |p|
@@ -94,18 +94,36 @@ class SurveysController < ApplicationController
   
   def destroy
     @survey.destroy
-    redirect_to surveys_path
+    flash[:notice]="Survey was deleted successfully"
+    redirect_to root_path
   end
   
   private
+  def find_user(params)
+    if user_signed_in?
+      current_user
+    elsif admin_signed_in?
+      current_admin
+    else
+      @user = User.new(name: params[:username], email: params[:email], password: 'unregistered', registered: false, uuid: SecureRandom.hex(n=4))
+      @user.save!
+      return @user
+    end
+  end
+
   def user_owns_survey?
     if admin_signed_in?
       return true
     else
-      @survey = Survey.find_by_uuid(params[:id])
-      @survey.user_id == current_user.id
+      @survey = Survey.find_by_adminid(params[:id])
+      if !@survey.user.registered
+        return true
+      elsif user_signed_in?
+        @survey.user_id == current_user.id
+      end
     end
   end
+
   def authenticate_user_or_admin!
     unless user_signed_in? or admin_signed_in?
       redirect_to root_url , :flash => {:alert => "You need to sign in as admin/user before continuing.".html_safe }

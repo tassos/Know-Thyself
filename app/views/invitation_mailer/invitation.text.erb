@@ -7,7 +7,7 @@ I recently found about the <%= link_to 'KnowThySelf', root_url %> application, w
   
 Will you help me learn more about myself by filling in this survey that I created? It's anonymous and very easy
   
-<%= link_to 'Survey', new_survey_response_url(@survey) %>
+<%= link_to 'Survey', new_survey_response_url(@survey.uuid) %>
 
 Thank you for helping me get to know myself better. Remember, you can create your own surveys and learn more about yourself too! Just create a <%= link_to 'free account', root_url %> and get started!
 

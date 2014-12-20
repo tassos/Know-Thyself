@@ -95,16 +95,20 @@
     <div class="tab-pane" id="administration">
       <h3>Invitation</h3>
       <p>Invite your friends to answer your survey, by sharing this link:<br/>
-      <%= link_to new_survey_response_url, new_survey_response_url, data: { no_turbolink: true } %>
+      <%= link_to new_survey_response_url(@survey.uuid), new_survey_response_url(@survey.uuid), data: { no_turbolink: true } %>
       </p>
       <p>You can also use this form to send an invitation. Just type in the addresses you want your survey to be sent<br></p>
       <%= form_tag({controller: "surveys", action: "send_survey_invitations"}, method: "post", class: "form-group") do %>
         <%= text_area_tag('invitations', nil, placeholder: "...add as many addresses as you want (seperated by comma)", class: "form-control", rows: '3') %>
         <%= hidden_field_tag(:survey_uuid, @survey.uuid)%>
-        <div class="checkbox">
-          <%= check_box_tag(:self) %>
-          <%= label_tag(:self, "Add my e-mail address in carbon copy (:cc)") %>
-        </div>  
+        <% if user_signed_in? %>
+          <div class="checkbox">
+            <%= check_box_tag(:self) %>
+            <%= label_tag(:self, "Add my e-mail address in carbon copy (:cc)") %>
+          </div> 
+        <% else %>
+          <br>
+        <% end %>
         <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">
           Preview
         </button>

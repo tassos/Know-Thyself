@@ -20,7 +20,7 @@ class ResponsesController < ApplicationController
       
       flash[:notice]="Response sent successfully!"
       if user_signed_in?
-        redirect_to survey_path(@response.survey.uuid)
+        redirect_to survey_path(@response.survey.adminid)
       else
         redirect_to thanks_path
       end

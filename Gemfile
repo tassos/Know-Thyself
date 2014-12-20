@@ -7,6 +7,9 @@ gem 'rails', '4.0.1'
 # Use postgresql as the database for Active Record
 gem 'pg'
 
+# Use pry for good debugging
+gem 'pry-rails'
+
 # Use Devise for user authentication
 gem 'devise'
 

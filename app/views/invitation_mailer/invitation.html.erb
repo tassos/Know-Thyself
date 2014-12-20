@@ -9,7 +9,7 @@
       I recently found about the <%= link_to 'KnowThySelf', root_url %> application, which is a very fun and easy way to learn more about yourself. You create a survey filling in adjectives that you think they describe you and then you ask your friends to fill in adjectives based on their opinions.
     </p>
     <p>
-      Will you help me learn more about myself by filling in <%= link_to 'this survey', new_survey_response_url(@survey) %> that I created? It is anonymous and very easy!
+      Will you help me learn more about myself by filling in <%= link_to 'this survey', new_survey_response_url(@survey.uuid) %> that I created? It is anonymous and very easy!
     </p>
     <p>Thank you for helping me get to know myself better. Remember, you can create your own surveys and learn more about yourself too! Just create a <%= link_to 'free account', root_url %> and get started!</p>
 
