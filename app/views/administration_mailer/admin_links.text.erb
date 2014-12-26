@@ -1,0 +1,14 @@
+Your newly created survey on the Know Thyself application
+=========================================================
+ 
+Hi <%= @survey.user.name %>
+  
+You just created survey "<%= @survey.name %>" with the KnowThySelf application, which is a very fun and easy way to learn more about yourself. You can view the responses you get and administer your survey by following this link:
+
+<%= survey_url(@survey.adminid) %>
+  
+If you want to share the survey with your friends, then use this link:
+
+<%= new_survey_response_url(@survey.uuid) %>
+
+Thank you for using this application! Please provide any feedback by sending an e-mail at: knowthyself@eipieq.com
