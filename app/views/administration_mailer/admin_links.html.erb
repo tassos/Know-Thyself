@@ -9,7 +9,7 @@
       You just created survey "<%= @survey.name %>" with the <%= link_to 'KnowThySelf', root_url %> application, which is a very fun and easy way to learn more about yourself. You can view the responses you receive and administer your survey by following this link:<br/>
     <%= link_to survey_url(@survey.adminid), survey_url(@survey.adminid) %></p>
     <p>
-      If you want to share the survey with your friends, then use this link:<br/> <%= link_to 'this survey', new_survey_response_url(@survey.uuid) %>
+      If you want to share the survey with your friends, then use this link:<br/> <%= link_to new_survey_response_url(@survey.uuid), new_survey_response_url(@survey.uuid) %>
     </p>
     <p>Thank you for using this application! Please provide any feedback by sending an e-mail at: <a href="mailto:knowthyself@eipieq.com">knowthyself@eipieq.com</a>
   </body>
