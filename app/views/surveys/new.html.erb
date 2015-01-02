@@ -11,15 +11,10 @@
     <div class="col-md-9">  
       <%= form_for @survey, url: surveys_path, html: {class: "form-group", id: "new_response"} do |u| %>
       
-        <p>Give a description for your survey</p>
+        <%= label_tag(:name, 'Survey name')%>
           <%= u.text_field :name, required: 'required' %>
         <% if !user_signed_in? %>
-          <%= u.fields_for :non_user do |l|%>
-            <p>Provide an e-mail address</p>
-            <%= l.text_field :email, required: 'required', type: 'email' %>
-            <p>Provide your name</p>
-            <%= l.text_field :username, required: 'required' %>
-          <% end %>
+          
         <% end %>
          
         <p>Select any adjectives that you believe describe you...</p>
@@ -43,7 +38,42 @@
           <p>...and add new words by typing them below.</p>
           <p><%= text_field_tag "response[newAdjectives][]", nil, placeholder: "add as many words as you want! (separated by comma)", size: 55%><span class="text-info glyphicon glyphicon-question-sign" aria-hidden="true" data-toggle="tooltip", data-placement="right", title="Separate words with a comma! e.g. Crazy, Energetic, Brave"></span></p>
         <%end%>
-        <p><%= u.submit "Submit!", class: "btn btn-success" %></p>
+        <% if user_signed_in? %>
+          <p><%= u.submit "Submit!", class: "btn btn-success" %></p>
+        <% else %>
+        <!-- Button trigger modal -->
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+            Submit!
+          </button>
+        <% end %>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Please enter your name and e-mail address</h4>
+              </div>
+              <div class="modal-body">
+              You are trying to create a survey without registering as a user. Please fill in your e-mail address, in order to send you the administration link of the survey. Please also fill in your name, which will appear on the survey:
+              <% if !user_signed_in? %>
+                <%= u.fields_for :non_user do |l|%>
+                  <br/><%= label_tag(:email, 'E-mail address') %>
+                  <%= l.text_field :email, required: 'required', type: 'email' %>
+                  <br/><%= label_tag(:username, 'Your name') %>
+                  <%= l.text_field :username, required: 'required' %>
+                <% end %>
+              <% end %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Back</button>
+                <%= u.submit "Submit!", class: "btn btn-success" %>
+              </div>
+            </div>
+          </div>
+        </div>
+
       <% end %>
     </div>
   </div>
