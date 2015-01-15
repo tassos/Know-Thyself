@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Johari::Application.config.secret_key_base = '94f8b22ac63de2c1b12b45e45ccf21a0436ca1c694e85d93b03211deb5c43fdf0441414f3e0cea7efb07858603b8cab9cb0c94287cc4719d2efba01de29e21f6'
+Johari::Application.config.secret_key_base = ENV['SECRET_TOKEN']
