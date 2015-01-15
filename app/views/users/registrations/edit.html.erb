@@ -30,6 +30,47 @@
 <h3>Cancel my account</h3>
 
 <p>Unhappy? You can delete your account if you wish to, and all your surveys and responses will be deleted as well.</br>
-  <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure? This action will delete all your surveys and is not reversible!" }, :method => :delete, class: "btn btn-danger" %></p>
+  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
+  Cancel my account!
+</button>
+  </p>
+
+<div class="modal fade bs-example-modal-sm" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Confirm you want to delete your account</h4>
+      </div>
+      <div class="modal-body">
+        Please confirm you want to delete your account by typing:<br/>
+        <b>I want to delete my account!</b><br>
+        <input type="text" class="confirmation form-control"><br>
+        Remember that all your surveys will be deleted and that this is not a reversible action!
+      </div>
+      <div class="modal-footer">
+        <center>
+        <%= button_to "Goodbye!", registration_path(resource_name), :method => :delete, class: "btn btn-danger cancel_account", disabled: true %>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 </div>
+
+<!-- Thanks to Raphael! https://gist.github.com/raphaelescoyez/8c24c50ebb3740a779a7 -->
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.confirmation').keyup(function() {
+      var confirmation = $('.confirmation').val();
+        if (confirmation == 'I want to delete my account!') {
+          $('.cancel_account').removeAttr('disabled');
+        } 
+        else {
+          $('.cancel_account').attr('disabled','disabled');
+        };
+    });
+  });
+</script>
